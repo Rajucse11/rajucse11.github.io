@@ -829,5 +829,42 @@ window.showLogin = () => {
     AOS.init({ duration: 800, once: true, offset: 50 });
 </script>
 
+
+
+<!-- POPUP NOTIFICATION MODAL (Hides by default) -->
+<div id="liveAlertModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:10000; justify-content:center; align-items:center;">
+    <div style="background:white; padding:30px; border-radius:15px; width:90%; max-width:400px; text-align:center; animation: dropDown 0.5s ease;">
+        <div style="font-size:40px; color:#ff6600; margin-bottom:15px;"><i class="fa fa-bell"></i></div>
+        <h2 id="alertTitle" style="color:#002b80; margin-bottom:10px;">Title</h2>
+        <p id="alertMsg" style="color:#444; margin-bottom:25px; line-height:1.5;">Message goes here</p>
+        <button onclick="document.getElementById('liveAlertModal').style.display='none'" style="background:#002b80; color:white; padding:10px 25px; border:none; border-radius:8px; font-size:16px; cursor:pointer;">Close</button>
+    </div>
+</div>
+<style> @keyframes dropDown { from { transform: translateY(-50px); opacity:0; } to { transform: translateY(0); opacity:1; } } </style>
+
+<script type="module">
+import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+const db = getDatabase(); // Using existing app initialized in index.html
+
+// Listen for New Notifications
+let lastAlertTime = 0;
+onValue(ref(db, 'webContent/liveAlert'), (snapshot) => {
+    if(snapshot.exists()) {
+        const data = snapshot.val();
+        // Check if this is a newly sent notification (to prevent showing old ones on every reload)
+        if(data.time > lastAlertTime) {
+            document.getElementById("alertTitle").innerText = data.title;
+            document.getElementById("alertMsg").innerText = data.message;
+            document.getElementById("liveAlertModal").style.display = "flex";
+            lastAlertTime = Date.now(); // Update time so it doesn't show again immediately
+        }
+    }
+});
+</script>
+
+
+
+
+    
 </body>
 </html>
