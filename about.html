@@ -6,86 +6,154 @@
 <title>About Raju</title>
 
 <style>
-body{
-  margin:0;
-  font-family:Arial, sans-serif;
-  background:#f4f6f9;
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #f4f6f9 0%, #e0e5ec 100%);
+  color: #333;
 }
 
-/* Section */
-.section{
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:40px;
+/* Container for all sections */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 20px;
 }
 
 /* Card */
-.card{
-  background:white;
-  padding:30px;
-  max-width:500px;
-  border-radius:15px;
-  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+.card {
+  background: white;
+  padding: 40px;
+  max-width: 600px;
+  width: 100%;
+  margin-bottom: 40px;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+  
+  /* Initial state for animation */
+  opacity: 0;
+  transform: translateY(80px) scale(0.95);
+  transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+}
 
-  opacity:0;
-  transform:translateY(60px);
-  transition:all 0.8s ease;
+/* Hover effect */
+.card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(13, 110, 253, 0.15);
 }
 
 /* Show animation */
-.card.show{
-  opacity:1;
-  transform:translateY(0);
+.card.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
 /* Title */
-h2{
-  color:#0d6efd;
-  margin-bottom:15px;
+h2 {
+  color: #0d6efd;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 28px;
+  border-bottom: 3px solid #e9ecef;
+  display: inline-block;
+  padding-bottom: 5px;
 }
 
 /* Text */
-p{
-  color:#555;
-  line-height:1.6;
+p {
+  color: #555;
+  line-height: 1.8;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+/* Tags for skills */
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.tag {
+  background: #e9ecef;
+  color: #0d6efd;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.tag:hover {
+  background: #0d6efd;
+  color: white;
 }
 </style>
 
 </head>
-
 <body>
 
-<div class="section">
+<div class="container">
+  
+  <!-- Section 1: Introduction -->
   <div class="card">
-
     <h2>About Me</h2>
-
     <p>
-      Hello! My name is Raju and I am a Web Developer and Web Designer.
-      I create modern and responsive websites using HTML, CSS, and JavaScript.
+      Hello! My name is <strong>Dhurendra Mahto (Raju)</strong>. I am a passionate Web Developer, Web Designer, and a Computer Science Engineering student at Bihar Polytechnic. 
     </p>
-
     <p>
-      I am continuously improving my skills by learning new web technologies.
-      My goal is to become a professional full-stack web developer.
+      My goal is to become a professional full-stack web developer, and I am continuously improving my skills by exploring new web technologies and building hands-on projects.
     </p>
-
   </div>
+
+  <!-- Section 2: Skills & Tech -->
+  <div class="card">
+    <h2>Skills & Technologies</h2>
+    <p>
+      I specialize in creating modern, responsive, and dynamic websites. Beyond writing code, I am experienced in setting up web hosting and cloud environments to bring projects to life.
+    </p>
+    <div class="skill-tags">
+      <span class="tag">HTML5</span>
+      <span class="tag">CSS3</span>
+      <span class="tag">JavaScript</span>
+      <span class="tag">GitHub Codespaces</span>
+      <span class="tag">Netlify</span>
+      <span class="tag">Firebase</span>
+    </div>
+  </div>
+
+  <!-- Section 3: Projects & Content -->
+  <div class="card">
+    <h2>Projects & Content Creation</h2>
+    <p>
+      I love sharing my knowledge and documenting my tech journey. I create web development learning content for my YouTube channel, <strong>CodeNixHindi</strong>.
+    </p>
+    <p>
+      I also manage and continuously optimize my personal website, <strong>rajucse11.github.io</strong>, monitoring its performance and indexing through Google Search Console. 
+    </p>
+  </div>
+
 </div>
 
 <script>
 function revealOnScroll(){
-  let card = document.querySelector(".card");
-  let position = card.getBoundingClientRect().top;
+  // querySelectorAll का उपयोग किया गया है ताकि सभी कार्ड्स एनिमेट हों
+  let cards = document.querySelectorAll(".card");
   let screenHeight = window.innerHeight;
 
-  if(position < screenHeight - 100){
-    card.classList.add("show");
-  }
+  cards.forEach((card) => {
+    let position = card.getBoundingClientRect().top;
+    
+    // अगर कार्ड स्क्रीन में थोड़ा ऊपर आ गया है, तो उसे दिखाएं
+    if(position < screenHeight - 100){
+      card.classList.add("show");
+    }
+  });
 }
 
+// स्क्रॉल करने पर और पेज लोड होने पर फंक्शन को कॉल करें
 window.addEventListener("scroll", revealOnScroll);
 window.addEventListener("load", revealOnScroll);
 </script>
