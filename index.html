@@ -139,7 +139,7 @@ body {
     .logo-box { width: 80px; height: 80px; }
 }
 
-/* NAVBAR - MODERN & MOBILE SCROLLABLE */
+/* NAVBAR */
 header {
     background: white;
     padding: 12px 20px;
@@ -157,11 +157,11 @@ header {
     background: #002b80;
     color: white;
     text-decoration: none;
-    border-radius: 25px; /* Pill Shape */
+    border-radius: 25px; 
     font-size: 15px;
     font-weight: 600;
     transition: 0.3s ease;
-    white-space: nowrap; /* Taki text tute nahi */
+    white-space: nowrap; 
 }
 
 .nav-btn:hover {
@@ -170,7 +170,6 @@ header {
     box-shadow: 0 4px 10px rgba(255, 77, 0, 0.3);
 }
 
-/* Horizontal Scroll for Mobile Nav */
 @media (max-width: 768px) {
     header {
         justify-content: flex-start;
@@ -179,7 +178,7 @@ header {
         -webkit-overflow-scrolling: touch;
     }
     header::-webkit-scrollbar {
-        height: 0px; /* Scrollbar hide karne ke liye */
+        height: 0px; 
         background: transparent;
     }
     .nav-btn {
@@ -188,7 +187,6 @@ header {
     }
 }
 
-/* NEW BADGE ANIMATION */
 .new-badge {
     position: absolute;
     top: -10px;
@@ -207,27 +205,42 @@ header {
   100% { background: red; transform: scale(1); }
 }
 
-/* HERO SECTION */
+/* HERO SLIDER SECTION (NEW) */
 .hero {
+    position: relative;
     height: 350px;
-    background: linear-gradient(-45deg, #ff4d00, #ff8c00, #002b80, #1a1a1a);
-    background-size: 400% 400%;
-    animation: gradientBG 10s ease infinite;
+    background: #1a1a1a;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+}
+
+.hero-slide {
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    z-index: 1;
+}
+
+.hero-slide.active {
+    opacity: 1;
+}
+
+.hero-text {
+    position: relative;
+    z-index: 2;
     font-size: 45px;
     font-weight: 800;
     color: white;
     text-align: center;
-    text-shadow: 3px 3px 10px rgba(0,0,0,0.5);
+    text-shadow: 3px 3px 10px rgba(0,0,0,0.8);
     padding: 0 20px;
-}
-
-@keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
 }
 
 /* NOTICE BAR */
@@ -396,7 +409,7 @@ header {
     min-width: 280px;
     border: none;
     overflow: hidden;
-    padding: 0; /* Removing padding for seamless header */
+    padding: 0; 
 }
 
 .box-title {
@@ -466,6 +479,7 @@ header {
 @media(max-width: 768px){
     .box-container { flex-direction: column; }
     .hero { font-size: 28px; height: 250px; }
+    .hero-text { font-size: 28px; }
 }
 
 /* FOOTER */
@@ -522,11 +536,6 @@ header {
     color: #888;
     font-size: 14px;
 }
-
-.footer-bottom span {
-    display: block;
-    margin-top: 5px;
-}
 </style>  
 </head>
 <body>
@@ -560,11 +569,14 @@ header {
     </a>
 </header>
 
-<div class="hero">WELCOME TO ALL USER</div>
+<!-- HERO SECTION (Admin Controlled Slider) -->
+<div class="hero" id="heroSliderContainer">
+    <div class="hero-text">WELCOME TO ALL USER</div>
+</div>
 
 <div class="notice-bar">
     <div class="notice-title">📢 महत्वपूर्ण सूचना</div>
-    <marquee>welcome 🙏 all User | 🔐 अधिक सुविधाओं और बेहतर सेवाओं का लाभ उठाने के लिए कृपया Register करें या Login करें।</marquee>
+    <marquee id="liveMarquee">welcome 🙏 all User | 🔐 अधिक सुविधाओं और बेहतर सेवाओं का लाभ उठाने के लिए कृपया Register करें या Login करें।</marquee>
 </div>
 
 <div class="container">
@@ -604,13 +616,11 @@ header {
             <select id="state">
                 <option value="" disabled selected>Select State</option>
                 <option>Andhra Pradesh</option> <option>Bihar</option> <option>Uttar Pradesh</option> <option>Delhi</option>
-                <!-- Add other states as needed -->
             </select>
             
             <select id="district">
                 <option value="" disabled selected>Select District</option>
                 <option>Patna</option> <option>West Champaran (Bettiah)</option> <option>None (Other State)</option>
-                <!-- Add other districts as needed -->
             </select>
           
             <input type="password" id="password" placeholder="Password">
@@ -625,36 +635,27 @@ header {
 <div class="box-container">
     <div class="info-box" data-aos="zoom-in" data-aos-delay="100">
         <div class="box-title">Latest Update</div>
-        <div class="box-content">
+        <div class="box-content" id="latestUpdatesBox">
             <a href="#">Bihar Board Result 2026 Released</a>
             <a href="#">CTET Form 2026 Apply Online</a>
-            <a href="#">SSC GD New Notification</a>
-            <a href="#">Railway NTPC Update</a>
-            <a href="#">Bihar Scholarship 2026</a>
         </div>
         <a href="#" class="view-more">View More...</a>
     </div>
 
     <div class="info-box" data-aos="zoom-in" data-aos-delay="200">
         <div class="box-title">Results</div>
-        <div class="box-content">
+        <div class="box-content" id="resultsBox">
             <a href="#">BSEB 10th Result</a>
             <a href="#">BSEB 12th Result</a>
-            <a href="#">SSC CGL Result</a>
-            <a href="#">Railway Result</a>
-            <a href="#">CTET Result</a>
         </div>
         <a href="#" class="view-more">View More...</a>
     </div>
 
     <div class="info-box" data-aos="zoom-in" data-aos-delay="300">
         <div class="box-title">Online Form</div>
-        <div class="box-content">
+        <div class="box-content" id="onlineFormsBox">
             <a href="#">SSC CGL Online Form</a>
             <a href="#">UPSC Online Form</a>
-            <a href="#">Railway Group D Form</a>
-            <a href="#">Navy Recruitment Form</a>
-            <a href="#">Bihar Vacancy Form</a>
         </div>
         <a href="#" class="view-more">View More...</a>
     </div>
@@ -697,12 +698,11 @@ header {
     </div>
 </footer>
 
-<!-- Firebase Code (Unchanged) -->
+<!-- FIREBASE INTEGRATION WITH LIVE SYNC & SLIDER -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } 
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCI6rxI61-io2zEpjkYllhHREFpcLK2ZEg",
@@ -718,14 +718,77 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 const auth = getAuth(app);
 
+// 1. Live Global Notice Sync
+const noticeContainer = document.getElementById("liveMarquee");
+onValue(ref(db, 'webContent/globalNotice'), (snapshot) => {
+    if(snapshot.exists()) { noticeContainer.innerText = snapshot.val(); }
+});
+
+// 2. Live Box Updates Sync
+function renderLiveBoxes(nodeName, boxId) {
+    onValue(ref(db, `webContent/boxUpdates/${nodeName}`), (snapshot) => {
+        const container = document.getElementById(boxId);
+        container.innerHTML = ""; 
+        if(snapshot.exists()) {
+            const data = snapshot.val();
+            Object.keys(data).forEach(key => {
+                const item = data[key];
+                const aTag = document.createElement('a');
+                aTag.href = item.url;
+                aTag.target = "_blank";
+                aTag.innerText = item.text;
+                container.appendChild(aTag);
+            });
+        } else {
+            container.innerHTML = "<p style='padding:15px;color:#888;'>No updates available.</p>";
+        }
+    });
+}
+renderLiveBoxes('latestUpdates', 'latestUpdatesBox');
+renderLiveBoxes('results', 'resultsBox');
+renderLiveBoxes('onlineForms', 'onlineFormsBox');
+
+// 3. Hero Slider Images Sync & Auto Slide
+let currentSlideIndex = 0;
+let slideElements = [];
+
+onValue(ref(db, 'webContent/heroImages'), (snapshot) => {
+    const heroContainer = document.getElementById("heroSliderContainer");
+    
+    // Purani photo hata do, sirf text bachega
+    document.querySelectorAll('.hero-slide').forEach(img => img.remove());
+    slideElements = [];
+    currentSlideIndex = 0;
+    
+    if(snapshot.exists()) {
+        const data = snapshot.val();
+        let isFirst = true;
+        
+        Object.keys(data).forEach(key => {
+            const img = document.createElement('img');
+            img.src = data[key].url;
+            img.className = 'hero-slide';
+            if(isFirst) { img.classList.add('active'); isFirst = false; }
+            heroContainer.insertBefore(img, heroContainer.firstChild); 
+            slideElements.push(img);
+        });
+    }
+});
+
+setInterval(() => {
+    if(slideElements.length > 1) {
+        slideElements[currentSlideIndex].classList.remove('active');
+        currentSlideIndex = (currentSlideIndex + 1) % slideElements.length;
+        slideElements[currentSlideIndex].classList.add('active');
+    }
+}, 3000); // 3 Second me photo change
+
+// --- LOGIN & REGISTER LOGIC ---
 window.login = () => {
     let email = document.getElementById("loginEmail").value;
     let password = document.getElementById("loginPassword").value;
     signInWithEmailAndPassword(auth, email, password)
-    .then(()=>{
-        alert("Login Successful");
-        window.location.href="project4.html";
-    })
+    .then(()=>{ alert("Login Successful"); window.location.href="project4.html"; })
     .catch(()=>alert("Invalid Login"));
 };
 
@@ -747,8 +810,7 @@ window.register = () => {
         set(ref(db, 'users/' + userCredential.user.uid), {
             username: username, mobile: mobile, email: email, dob: dob, state: state, district: district
         });
-        alert("Registration Successful");
-        showLogin();
+        alert("Registration Successful"); showLogin();
     }).catch((err) => { alert(err.message); console.log(err); });
 };
 
@@ -756,7 +818,6 @@ window.showRegister = () => {
     document.getElementById("loginPage").classList.add("hidden");
     document.getElementById("registerPage").classList.remove("hidden");
 };
-
 window.showLogin = () => {
     document.getElementById("registerPage").classList.add("hidden");
     document.getElementById("loginPage").classList.remove("hidden");
