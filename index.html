@@ -33,9 +33,29 @@ body {
     overflow-x: hidden;
 }
 
+/* NAYA ANIMATION: 15+ Colors, Har 3 Second me change (Total 45s cycle) */
+@keyframes headerColorCycle {
+    0%   { background-color: #ff6600; } /* Tomato / Orange */
+    6%   { background-color: #e63946; } /* Crimson Red */
+    13%  { background-color: #002b80; } /* EduPoint Dark Blue */
+    20%  { background-color: #2a9d8f; } /* Teal */
+    26%  { background-color: #8338ec; } /* Bright Purple */
+    33%  { background-color: #ff006e; } /* Hot Pink */
+    40%  { background-color: #0077b6; } /* Ocean Blue */
+    46%  { background-color: #38b000; } /* Green */
+    53%  { background-color: #d62828; } /* Dark Red */
+    60%  { background-color: #4361ee; } /* Royal Blue */
+    66%  { background-color: #7209b7; } /* Deep Violet */
+    73%  { background-color: #f77f00; } /* Vibrant Orange */
+    80%  { background-color: #023e8a; } /* Navy Blue */
+    86%  { background-color: #b5179e; } /* Magenta */
+    93%  { background-color: #0096c7; } /* Light Sea Blue */
+    100% { background-color: #ff6600; } /* Back to start */
+}
+
 /* TOP HEADER */
 .top-header {
-    background: linear-gradient(135deg, #ff6600, #ff8c00);
+    animation: headerColorCycle 45s infinite;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -205,15 +225,18 @@ header {
   100% { background: red; transform: scale(1); }
 }
 
-/* HERO SLIDER SECTION (NEW) */
+/* HERO SLIDER SECTION (Background color ab change hoga!) */
 .hero {
     position: relative;
-    height: 350px;
-    background: #1a1a1a;
+    width: 100%;
+    height: 500px;
+    /* Yahan pehle #1a1a1a black tha, ab maine same animation laga diya hai */
+    animation: headerColorCycle 45s infinite; 
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 .hero-slide {
@@ -222,25 +245,16 @@ header {
     left: 0;
     width: 100%; 
     height: 100%;
-    object-fit: cover;
+    object-fit: contain; 
     opacity: 0;
-    transition: opacity 1s ease-in-out;
+    transform: scale(1);
+    transition: opacity 1s ease-in-out, transform 4s ease-in-out;
     z-index: 1;
 }
 
 .hero-slide.active {
     opacity: 1;
-}
-
-.hero-text {
-    position: relative;
-    z-index: 2;
-    font-size: 45px;
-    font-weight: 800;
-    color: white;
-    text-align: center;
-    text-shadow: 3px 3px 10px rgba(0,0,0,0.8);
-    padding: 0 20px;
+    transform: scale(1.02);
 }
 
 /* NOTICE BAR */
@@ -476,10 +490,32 @@ header {
     color: #fff;
 }
 
+/* TOAST NOTIFICATION CSS (NEW) */
+#newLinkToast {
+    display: none; 
+    position: fixed; 
+    bottom: 20px; 
+    right: 20px; 
+    background: white; 
+    border-left: 6px solid #ff6600; 
+    padding: 15px 25px 15px 15px; 
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2); 
+    z-index: 10001; 
+    border-radius: 8px; 
+    animation: slideInRight 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+@keyframes slideInRight { 
+    from { transform: translateX(120%); opacity: 0; } 
+    to { transform: translateX(0); opacity: 1; } 
+}
+
+/* MOBILE RESPONSIVE TWEAKS */
 @media(max-width: 768px){
     .box-container { flex-direction: column; }
-    .hero { font-size: 28px; height: 250px; }
-    .hero-text { font-size: 28px; }
+    .hero { 
+        height: 250px; 
+        border-radius: 0 0 15px 15px; 
+    }
 }
 
 /* FOOTER */
@@ -571,7 +607,7 @@ header {
 
 <!-- HERO SECTION (Admin Controlled Slider) -->
 <div class="hero" id="heroSliderContainer">
-    <div class="hero-text">WELCOME TO ALL USER</div>
+    <!-- Photos will dynamically load here via JavaScript -->
 </div>
 
 <div class="notice-bar">
@@ -698,6 +734,14 @@ header {
     </div>
 </footer>
 
+<!-- NEW LINK TOAST POPUP -->
+<div id="newLinkToast">
+    <button onclick="document.getElementById('newLinkToast').style.display='none'" style="position:absolute; top:5px; right:8px; background:none; border:none; font-size:20px; color:#999; cursor:pointer;">&times;</button>
+    <div style="font-size: 12px; font-weight:bold; color:#002b80; text-transform:uppercase; margin-bottom:5px;" id="toastCategory">🔔 New Update</div>
+    <a href="#" target="_blank" id="toastText" style="display:block; font-size:16px; font-weight:bold; color:#ff6600; text-decoration:none; max-width:250px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Link Text</a>
+    <div style="font-size:11px; color:#666; margin-top:5px;">Click to view details</div>
+</div>
+
 <!-- FIREBASE INTEGRATION WITH LIVE SYNC & SLIDER -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
@@ -724,14 +768,40 @@ onValue(ref(db, 'webContent/globalNotice'), (snapshot) => {
     if(snapshot.exists()) { noticeContainer.innerText = snapshot.val(); }
 });
 
-// 2. Live Box Updates Sync
-function renderLiveBoxes(nodeName, boxId) {
+// 2. Live Box Updates Sync (WITH NEW TOAST POPUP LOGIC)
+let knownLinks = new Set();
+let isFirstLoad = { latestUpdates: false, results: false, onlineForms: false };
+
+function renderLiveBoxes(nodeName, boxId, boxTitle) {
     onValue(ref(db, `webContent/boxUpdates/${nodeName}`), (snapshot) => {
         const container = document.getElementById(boxId);
         container.innerHTML = ""; 
         if(snapshot.exists()) {
             const data = snapshot.val();
-            Object.keys(data).forEach(key => {
+            const currentKeys = Object.keys(data);
+            
+            // Check for New Link added by Admin
+            if(isFirstLoad[nodeName]) {
+                currentKeys.forEach(key => {
+                    if(!knownLinks.has(key)) {
+                        // Naya Link Detect hua hai! Popup Show karo
+                        const toast = document.getElementById("newLinkToast");
+                        document.getElementById("toastCategory").innerText = `🔔 New in ${boxTitle}`;
+                        const linkData = data[key];
+                        const tText = document.getElementById("toastText");
+                        tText.innerText = linkData.text;
+                        tText.href = linkData.url;
+                        toast.style.display = "block";
+                        
+                        // 10 second baad popup automatically hide ho jayega
+                        setTimeout(() => { toast.style.display = "none"; }, 10000);
+                    }
+                });
+            }
+
+            // Render Links
+            currentKeys.forEach(key => {
+                knownLinks.add(key); // Yaad rakhne ke liye save kar lo
                 const item = data[key];
                 const aTag = document.createElement('a');
                 aTag.href = item.url;
@@ -739,14 +809,16 @@ function renderLiveBoxes(nodeName, boxId) {
                 aTag.innerText = item.text;
                 container.appendChild(aTag);
             });
+            isFirstLoad[nodeName] = true;
         } else {
             container.innerHTML = "<p style='padding:15px;color:#888;'>No updates available.</p>";
+            isFirstLoad[nodeName] = true;
         }
     });
 }
-renderLiveBoxes('latestUpdates', 'latestUpdatesBox');
-renderLiveBoxes('results', 'resultsBox');
-renderLiveBoxes('onlineForms', 'onlineFormsBox');
+renderLiveBoxes('latestUpdates', 'latestUpdatesBox', 'Latest Updates');
+renderLiveBoxes('results', 'resultsBox', 'Results');
+renderLiveBoxes('onlineForms', 'onlineFormsBox', 'Online Forms');
 
 // 3. Hero Slider Images Sync & Auto Slide
 let currentSlideIndex = 0;
@@ -755,7 +827,6 @@ let slideElements = [];
 onValue(ref(db, 'webContent/heroImages'), (snapshot) => {
     const heroContainer = document.getElementById("heroSliderContainer");
     
-    // Purani photo hata do, sirf text bachega
     document.querySelectorAll('.hero-slide').forEach(img => img.remove());
     slideElements = [];
     currentSlideIndex = 0;
@@ -781,7 +852,7 @@ setInterval(() => {
         currentSlideIndex = (currentSlideIndex + 1) % slideElements.length;
         slideElements[currentSlideIndex].classList.add('active');
     }
-}, 3000); // 3 Second me photo change
+}, 4000); 
 
 // --- LOGIN & REGISTER LOGIC ---
 window.login = () => {
@@ -829,9 +900,7 @@ window.showLogin = () => {
     AOS.init({ duration: 800, once: true, offset: 50 });
 </script>
 
-
-
-<!-- POPUP NOTIFICATION MODAL (Hides by default) -->
+<!-- LIVE NOTIFICATION MODAL -->
 <div id="liveAlertModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:10000; justify-content:center; align-items:center;">
     <div style="background:white; padding:30px; border-radius:15px; width:90%; max-width:400px; text-align:center; animation: dropDown 0.5s ease;">
         <div style="font-size:40px; color:#ff6600; margin-bottom:15px;"><i class="fa fa-bell"></i></div>
@@ -844,27 +913,21 @@ window.showLogin = () => {
 
 <script type="module">
 import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-const db = getDatabase(); // Using existing app initialized in index.html
+const db = getDatabase(); 
 
-// Listen for New Notifications
 let lastAlertTime = 0;
 onValue(ref(db, 'webContent/liveAlert'), (snapshot) => {
     if(snapshot.exists()) {
         const data = snapshot.val();
-        // Check if this is a newly sent notification (to prevent showing old ones on every reload)
         if(data.time > lastAlertTime) {
             document.getElementById("alertTitle").innerText = data.title;
             document.getElementById("alertMsg").innerText = data.message;
             document.getElementById("liveAlertModal").style.display = "flex";
-            lastAlertTime = Date.now(); // Update time so it doesn't show again immediately
+            lastAlertTime = Date.now(); 
         }
     }
 });
 </script>
 
-
-
-
-    
 </body>
 </html>
