@@ -8,744 +8,556 @@
     <meta name="google-site-verification" content="ZCK2gbiv7ta-2s0q1nfL9ZWeOZsGv234KQBGpf9rjSw" />
     <meta name="description" content="Raju Web Developer and Web Designer from Bihar, India. Professional website design and development services.">
     <meta name="keywords" content="Raju Web Developer, Web Designer, Bihar Website Developer, Web Design">
-    <title>Raju Web Developer and Web Designer</title>
+    <title>EduPoint India - Your Success, Our Mission</title>
 
-    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <!-- AOS Library for Scroll Animations -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* ================= GLOBAL STYLES ================= */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; transition: background-color 0.4s ease, color 0.4s ease; }
+html, body { scroll-behavior: smooth; overflow-x: hidden; width: 100%; max-width: 100vw; background: #f4f7f6; color: #333; }
+a { text-decoration: none; }
+ul { list-style: none; }
+
+/* ================= DARK MODE (GREEN & BLACK) ================= */
+body.dark-theme { background: #0a0a0a; color: #d4fcd8; }
+body.dark-theme .super-top-bar { background: #050505; border-bottom: 1px solid #1a3320; color: #999; }
+body.dark-theme .main-header, 
+body.dark-theme nav.main-nav, 
+body.dark-theme .notice-bar, 
+body.dark-theme .about, 
+body.dark-theme .hacker-box, 
+body.dark-theme .info-box,
+body.dark-theme .search-section,
+body.dark-theme .quick-features,
+body.dark-theme .stats-box { background: #111412; border: 1px solid #1b3a24; box-shadow: 0 5px 20px rgba(0, 255, 102, 0.05); }
+
+body.dark-theme .logo-text h1, body.dark-theme .contact-info h4, body.dark-theme .about h2, body.dark-theme .hacker-box h2, body.dark-theme .box-title-header h3, body.dark-theme .feature-item h4, body.dark-theme .stat-item h3 { color: #00ff66; }
+body.dark-theme .hero { background: linear-gradient(135deg, #050505, #0f2615); }
+body.dark-theme .btn-primary, body.dark-theme .register-btn, body.dark-theme .hacker-box button, body.dark-theme .notice-title { background: #00ff66; color: #000; box-shadow: 0 4px 10px rgba(0,255,102,0.2); }
+body.dark-theme .btn-primary:hover, body.dark-theme .register-btn:hover { background: #00cc52; }
+body.dark-theme .hacker-box input, body.dark-theme .hacker-box select, body.dark-theme #pageSearchInput { background: #1a1f1b; border-color: #2b4d36; color: white; }
+body.dark-theme .hacker-box input:focus { border-color: #00ff66; box-shadow: 0 0 8px rgba(0,255,102,0.3); }
+body.dark-theme .box-content a { border-bottom: 1px dashed #2b4d36; color: #a1c9ad; }
+body.dark-theme .box-content a:hover { background: #16261b; color: #00ff66; }
+body.dark-theme .box-title-header, body.dark-theme .hacker-box h2 { border-bottom: 1px solid #1b3a24; }
+body.dark-theme .footer { background: #050505; border-top: 4px solid #00ff66; }
+body.dark-theme .stay-updated { background: linear-gradient(135deg, #0a1f10, #143d20); border: 1px solid #00ff66; }
+
+/* ================= SUPER TOP BAR ================= */
+.super-top-bar { background: #1a103c; color: #d1d1d1; display: flex; justify-content: space-between; padding: 10px 5%; font-size: 13px; border-bottom: 1px solid #2a1b54; align-items: center; flex-wrap: wrap; }
+.super-top-bar .left i { color: #8338ec; margin-right: 5px; }
+.super-top-bar .right { display: flex; gap: 20px; align-items: center; }
+.super-top-bar .right span { cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 5px; }
+.super-top-bar .right span:hover { color: white; }
+
+.toggle-switch { position: relative; width: 34px; height: 18px; background: #555; border-radius: 20px; transition: 0.3s; display: inline-block; margin-left: 5px; vertical-align: middle; }
+.toggle-switch::after { content: ''; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; background: white; border-radius: 50%; transition: 0.3s; }
+body.dark-theme .toggle-switch { background: #00ff66; }
+body.dark-theme .toggle-switch::after { transform: translateX(16px); }
+
+/* ================= MAIN HEADER & BRANDING ================= */
+.main-header { background: white; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+.logo-area { display: flex; align-items: center; gap: 15px; }
+.logo-box { width: 70px; height: 70px; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); overflow: hidden; border: 3px solid #8338ec; flex-shrink: 0; }
+body.dark-theme .logo-box { border-color: #00ff66; }
+.logo-box img { width: 100%; height: 100%; object-fit: cover; }
+.logo-text h1 { font-size: 26px; color: #1a103c; font-weight: 800; line-height: 1.2; }
+.logo-text p { font-size: 13px; color: #666; }
+
+.header-contacts { display: flex; gap: 30px; align-items: center; }
+.contact-item { display: flex; align-items: center; gap: 10px; }
+.contact-icon { width: 40px; height: 40px; border-radius: 50%; background: #f0f0f5; color: #8338ec; display: flex; justify-content: center; align-items: center; font-size: 18px; }
+body.dark-theme .contact-icon { background: #1a291e; color: #00ff66; }
+.contact-info p { font-size: 12px; color: #888; margin-bottom: 2px; }
+.contact-info h4 { font-size: 14px; font-weight: 600; color: #333; }
+
+/* Action Block Alignment Fixes */
+.header-actions { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; }
+.register-btn { background: #8338ec; color: white; padding: 10px 25px; border-radius: 5px; font-weight: bold; display: flex; align-items: center; gap: 8px; transition: 0.3s; cursor: pointer; }
+.register-btn:hover { background: #6b21a8; transform: translateY(-2px); }
+
+.social-icons-head { display: flex; gap: 8px; justify-content: flex-end; width: 100%; }
+.social-icons-head a { color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 14px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+.social-icons-head .wa { background: #25d366; }
+.social-icons-head .ig { background: #e1306c; }
+.social-icons-head .fb { background: #1877f2; }
+.social-icons-head .yt { background: #ff0000; }
+.social-icons-head a:hover { transform: scale(1.1); }
+
+/* ================= NAVIGATION ================= */
+nav.main-nav { background: #2a1b54; padding: 0 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+.nav-links { display: flex; list-style: none; flex-wrap: wrap; }
+.nav-links li a { color: white; padding: 18px 15px; display: block; font-size: 14px; font-weight: 500; transition: 0.3s; position: relative; white-space: nowrap; }
+.nav-links li a:hover { background: rgba(255,255,255,0.1); }
+.nav-links li a i { margin-left: 4px; font-size: 12px; }
+.new-badge { position: absolute; top: 8px; right: 0px; background: #ffcc00; color: black; font-size: 9px; padding: 2px 5px; border-radius: 10px; font-weight: bold; }
+.nav-search { background: rgba(0,0,0,0.2); border-radius: 20px; padding: 5px 15px; display: flex; align-items: center; border: 1px solid rgba(255,255,255,0.1); }
+.nav-search input { background: none; border: none; outline: none; color: white; width: 180px; font-size: 13px; }
+.nav-search i { color: white; cursor: pointer; }
+
+/* ================= DESKTOP HERO SECTION ================= */
+.hero { display: flex; background: linear-gradient(135deg, #1a103c, #3d277a); position: relative; height: 500px; overflow: hidden; width: 100%; }
+.hero-content { flex: 1; padding: 80px 5%; z-index: 2; color: white; display: flex; flex-direction: column; justify-content: center; max-width: 50%; }
+.hero-content h1 { font-size: 45px; line-height: 1.2; margin-bottom: 20px; font-weight: 800; }
+.hero-content h1 span { color: #ffcc00; }
+body.dark-theme .hero-content h1 span { color: #00ff66; }
+.hero-content p { font-size: 16px; margin-bottom: 30px; color: #d1d1d1; line-height: 1.6; }
+.hero-buttons { display: flex; gap: 15px; }
+.btn-primary { background: #8338ec; color: white; padding: 12px 25px; border-radius: 5px; font-weight: bold; transition: 0.3s; display: inline-flex; align-items: center; gap: 10px; }
+.btn-outline { border: 2px solid white; color: white; padding: 12px 25px; border-radius: 5px; font-weight: bold; transition: 0.3s; display: inline-flex; align-items: center; gap: 10px; }
+.btn-outline:hover { background: white; color: #1a103c; }
+
+.hero-slider-wrapper { position: absolute; top: 0; right: 0; width: 55%; height: 100%; clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%); z-index: 1; }
+.hero-slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.8s ease-in-out; }
+.hero-slide.active { opacity: 1; }
+
+.slider-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 45px; height: 45px; background: white; color: #1a103c; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 10; font-size: 18px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: 0.3s; border: none; }
+.slider-arrow:hover { background: #ffcc00; }
+.prev-arrow { left: 2%; } 
+.next-arrow { right: 2%; }
+.slider-dots { position: absolute; bottom: 20px; right: 20%; display: flex; gap: 8px; z-index: 10; }
+.dot { width: 10px; height: 10px; background: rgba(255,255,255,0.5); border-radius: 50%; cursor: pointer; transition: 0.3s; }
+.dot.active { background: white; transform: scale(1.3); }
+
+/* ================= COMPREHENSIVE RESPONSIVE DESIGN ================= */
+@media(max-width: 991px) {
+    .header-contacts { display: none; }
+    .main-header { padding: 15px 5%; }
+    nav.main-nav { overflow-x: auto; white-space: nowrap; padding: 10px 5%; justify-content: center; }
+    .nav-search { display: none; }
+    .header-actions { align-items: center; width: 100%; margin-top: 10px; }
+    .social-icons-head { justify-content: center; }
 }
 
-html {
-    scroll-behavior: smooth;
+@media(max-width: 768px) {
+    .super-top-bar { flex-direction: column; gap: 8px; text-align: center; justify-content: center; padding: 12px 5%; }
+    .super-top-bar .right { justify-content: center; gap: 15px; width: 100%; }
+    
+    .main-header { flex-direction: column; text-align: center; gap: 12px; }
+    .logo-area { flex-direction: column; }
+    
+    .hero { flex-direction: column; height: auto; }
+    .hero-content { max-width: 100%; padding: 45px 5% 25px; text-align: center; }
+    .hero-buttons { justify-content: center; }
+    
+    .hero-slider-wrapper { position: relative; width: 100%; height: 300px; clip-path: none; order: 2; }
+    .slider-arrow { top: auto; bottom: 130px; }
+    .prev-arrow { left: 15px; }
+    .next-arrow { right: 15px; }
+    .slider-dots { right: 50%; transform: translateX(50%); bottom: 20px; }
 }
 
-body {
-    background: #f4f7f6;
-    overflow-x: hidden;
-}
+/* ================= CORE PAGE COMPONENTS ================= */
+.quick-features { background: white; margin: -25px 5% 20px; padding: 20px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); display: flex; gap: 20px; overflow-x: auto; position: relative; z-index: 10; align-items: center; justify-content: space-between; }
+.quick-features::-webkit-scrollbar { height: 4px; }
+.quick-features::-webkit-scrollbar-thumb { background: #8338ec; }
+.feature-item { display: flex; align-items: center; gap: 15px; min-width: 200px; }
+.feature-icon { width: 45px; height: 45px; border-radius: 50%; background: #f4f0ff; color: #8338ec; display: flex; justify-content: center; align-items: center; font-size: 20px; }
+body.dark-theme .feature-icon { background: #1a291e; color: #00ff66; }
+.feature-text h4 { font-size: 15px; color: #1a103c; font-weight: bold; }
+.feature-text p { font-size: 11px; color: #777; margin-top: 3px; line-height: 1.2; }
 
-/* NAYA ANIMATION: 15+ Colors, Har 3 Second me change (Total 45s cycle) */
-@keyframes headerColorCycle {
-    0%   { background-color: #ff6600; } /* Tomato / Orange */
-    6%   { background-color: #e63946; } /* Crimson Red */
-    13%  { background-color: #002b80; } /* EduPoint Dark Blue */
-    20%  { background-color: #2a9d8f; } /* Teal */
-    26%  { background-color: #8338ec; } /* Bright Purple */
-    33%  { background-color: #ff006e; } /* Hot Pink */
-    40%  { background-color: #0077b6; } /* Ocean Blue */
-    46%  { background-color: #38b000; } /* Green */
-    53%  { background-color: #d62828; } /* Dark Red */
-    60%  { background-color: #4361ee; } /* Royal Blue */
-    66%  { background-color: #7209b7; } /* Deep Violet */
-    73%  { background-color: #f77f00; } /* Vibrant Orange */
-    80%  { background-color: #023e8a; } /* Navy Blue */
-    86%  { background-color: #b5179e; } /* Magenta */
-    93%  { background-color: #0096c7; } /* Light Sea Blue */
-    100% { background-color: #ff6600; } /* Back to start */
-}
+.notice-bar { display: flex; background: white; margin: 20px 5% 10px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden; align-items: center; }
+.notice-title { background: #2a1b54; color: white; padding: 15px 20px; font-weight: bold; display: flex; align-items: center; gap: 10px; white-space: nowrap; z-index: 2; }
+.notice-bar marquee { font-size: 15px; font-weight: 600; padding: 0 15px; }
 
-/* TOP HEADER */
-.top-header {
-    animation: headerColorCycle 45s infinite;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 15px 30px;
-    color: white;
-    box-shadow: 0 3px 15px rgba(0,0,0,0.15);
-}
+.search-section { background: white; margin: 0 5% 30px; padding: 15px 20px; border-radius: 8px; display: flex; gap: 10px; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+.search-section input { flex: 1; padding: 12px 15px; border: 1px solid #ddd; border-radius: 8px; outline: none; font-size: 15px; }
+.search-section button { padding: 12px 25px; background: #8338ec; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+body.dark-theme .search-section button { background: #00ff66; color: black; }
 
-.logo-box {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    background: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 4px solid white;
-    animation: float 3s ease-in-out infinite;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
+.container { display: flex; flex-wrap: wrap; gap: 30px; padding: 0 5% 50px; }
+.about { flex: 1.5; min-width: 300px; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
+.about h2 { color: #1a103c; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; font-size: 24px; }
+.about h2 i { color: #8338ec; }
+body.dark-theme .about h2 i { color: #00ff66; }
+.about p { font-size: 16px; line-height: 1.8; margin-bottom: 15px; }
 
-.logo-box img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-@keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-8px); }
-    100% { transform: translateY(0px); }
-}
-
-.header-info {
-    text-align: center;
-    flex: 1;
-    padding: 0 15px;
-}
-
-.header-info h2 {
-    margin: 0;
-    font-size: 30px;
-    font-weight: 800;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-}
-
-.header-info p {
-    margin: 5px 0 10px;
-    font-size: 18px;
-    font-weight: 500;
-}
-
-.admission-badge {
-    display: inline-block;
-    background: #28a745;
-    color: white;
-    padding: 8px 22px;
-    border-radius: 30px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(40, 167, 69, 0.4);
-}
-
-.admission-badge:hover {
-    background: #218838;
-    transform: scale(1.05);
-}
-
-.social-icons {
-    display: flex;
-    gap: 12px;
-}
-
-.social-icons a {
-    width: 40px;
-    height: 40px;
-    background: white;
-    color: #ff6600;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    text-decoration: none;
-    transition: 0.3s;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-.social-icons a:hover {
-    transform: scale(1.1) rotate(10deg);
-    background: #002b80;
-    color: white;
-}
-
-@media(max-width: 768px){
-    .top-header { flex-direction: column; gap: 10px; text-align: center; padding: 20px 15px; }
-    .header-info h2 { font-size: 24px; }
-    .header-info p { font-size: 16px; }
-    .logo-box { width: 80px; height: 80px; }
-}
-
-/* NAVBAR */
-header {
-    background: white;
-    padding: 12px 20px;
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-.nav-btn {
-    padding: 10px 22px;
-    background: #002b80;
-    color: white;
-    text-decoration: none;
-    border-radius: 25px; 
-    font-size: 15px;
-    font-weight: 600;
-    transition: 0.3s ease;
-    white-space: nowrap; 
-}
-
-.nav-btn:hover {
-    background: #ff4d00;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(255, 77, 0, 0.3);
-}
-
-@media (max-width: 768px) {
-    header {
-        justify-content: flex-start;
-        overflow-x: auto;
-        padding: 10px 15px;
-        -webkit-overflow-scrolling: touch;
-    }
-    header::-webkit-scrollbar {
-        height: 0px; 
-        background: transparent;
-    }
-    .nav-btn {
-        font-size: 14px;
-        padding: 8px 18px;
-    }
-}
-
-.new-badge {
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    font-size: 10px;
-    color: white;
-    padding: 3px 6px;
-    border-radius: 10px;
-    font-weight: bold;
-    animation: blinkColor 1s infinite;
-}
-
-@keyframes blinkColor {
-  0%   { background: red; transform: scale(1); }
-  50%  { background: green; transform: scale(1.1); }
-  100% { background: red; transform: scale(1); }
-}
-
-/* HERO SLIDER SECTION (Background color ab change hoga!) */
-.hero {
-    position: relative;
-    width: 100%;
-    height: 500px;
-    /* Yahan pehle #1a1a1a black tha, ab maine same animation laga diya hai */
-    animation: headerColorCycle 45s infinite; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-.hero-slide {
-    position: absolute;
-    top: 0; 
-    left: 0;
-    width: 100%; 
-    height: 100%;
-    object-fit: contain; 
-    opacity: 0;
-    transform: scale(1);
-    transition: opacity 1s ease-in-out, transform 4s ease-in-out;
-    z-index: 1;
-}
-
-.hero-slide.active {
-    opacity: 1;
-    transform: scale(1.02);
-}
-
-/* NOTICE BAR */
-.notice-bar {
-    display: flex;
-    width: 100%;
-    height: 50px;
-    background: white;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    align-items: center;
-}
-
-.notice-title {
-    background: #ff6600;
-    color: white;
-    font-weight: bold;
-    padding: 0 20px;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 170px;
-    font-size: 15px;
-    z-index: 2;
-    box-shadow: 3px 0 10px rgba(0,0,0,0.1);
-}
-
-.notice-bar marquee {
-    font-size: 16px;
-    color: #333;
-    font-weight: 600;
-    padding-left: 10px;
-}
-
-/* MAIN CONTAINER */
-.container {
-    display: flex;
-    gap: 30px;
-    padding: 40px 20px;
-    flex-wrap: wrap;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.about, .hacker-box, .info-box {
-    background: white;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-    transition: all 0.4s ease;
-}
-
-.about:hover, .hacker-box:hover, .info-box:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 30px rgba(0,43,128,0.15);
-}
-
-.about {
-    flex: 1;
-    min-width: 300px;
-}
-
-.about h2 {
-    color: #ff6600;
-    text-align: center;
-    margin-bottom: 20px;
-    position: relative;
-}
-
-.about h2::after {
-    content: '';
-    width: 60px;
-    height: 4px;
-    background: #002b80;
-    display: block;
-    margin: 10px auto 0;
-    border-radius: 5px;
-}
-
-.about p {
-    font-size: 16px;
-    line-height: 1.8;
-    color: #444;
-}
-
-/* LOGIN & REGISTER BOX */
-.hacker-box {
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
-}
-
-.hacker-box h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #002b80;
-    letter-spacing: 1px;
-    font-size: 24px;
-    font-weight: 800;
-}
-
-.hacker-box input, .hacker-box select {
-    width: 100%;
-    padding: 12px 15px;
-    margin: 8px 0;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    outline: none;
-    font-size: 15px;
-    transition: 0.3s;
-    background: #f8f9fa;
-}
-
-.hacker-box input:focus, .hacker-box select:focus {
-    border-color: #ff6600;
-    background: white;
-    box-shadow: 0 0 8px rgba(255,102,0,0.2);
-}
-
-.hacker-box button {
-    width: 100%;
-    padding: 14px;
-    background: linear-gradient(135deg, #002b80, #0056b3);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-    margin-top: 15px;
-}
-
-.hacker-box button:hover {
-    background: linear-gradient(135deg, #ff4d00, #ff6600);
-    transform: scale(1.02);
-    box-shadow: 0 5px 15px rgba(255, 77, 0, 0.3);
-}
-
-.hacker-box p {
-    text-align: center;
-    margin-top: 15px;
-    font-size: 14px;
-}
-
-.hacker-box a {
-    color: #ff4d00;
-    font-weight: bold;
-    cursor: pointer;
-    text-decoration: none;
-}
-
+.hacker-box { flex: 1; min-width: 300px; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); border-top: 5px solid #8338ec; }
+body.dark-theme .hacker-box { border-top-color: #00ff66; }
+.hacker-box h2 { color: #1a103c; margin-bottom: 20px; font-size: 22px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+.hacker-box h2 i { color: #8338ec; }
+body.dark-theme .hacker-box h2 i { color: #00ff66; }
+.hacker-box input, .hacker-box select { width: 100%; padding: 12px 15px; margin: 8px 0; border: 1px solid #ddd; border-radius: 8px; outline: none; font-size: 14px; background: #f9f9f9; }
+.hacker-box button { width: 100%; padding: 12px; background: linear-gradient(135deg, #8338ec, #6b21a8); color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 15px; }
+.hacker-box p { text-align: center; margin-top: 15px; font-size: 14px; }
+.hacker-box a { color: #8338ec; font-weight: bold; cursor: pointer; }
+body.dark-theme .hacker-box a { color: #00ff66; }
 .hidden { display: none; }
 
-/* LATEST UPDATES BOXES */
-.box-container {
-    display: flex;
-    gap: 20px;
-    margin: 0 auto 40px;
-    padding: 0 20px;
-    max-width: 1200px;
-}
+.box-container { padding: 0 5% 50px; }
+@media(min-width: 768px){ .box-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; } }
+@media(max-width: 767px){ .box-container { display: flex; flex-direction: column; gap: 20px; } }
 
-.info-box {
-    flex: 1;
-    min-width: 280px;
-    border: none;
-    overflow: hidden;
-    padding: 0; 
-}
+.info-box { background: white; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); overflow: hidden; border: 1px solid #eee; }
+.box-title-header { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; border-bottom: 1px solid #eee; }
+.box-title-header h3 { font-size: 18px; color: #1a103c; display: flex; align-items: center; gap: 10px; }
+.box-title-header h3 i { color: #8338ec; }
+body.dark-theme .box-title-header h3 i { color: #00ff66; }
+.box-title-header .view-all { font-size: 12px; color: #8338ec; font-weight: bold; }
+body.dark-theme .box-title-header .view-all { color: #00ff66; }
+.box-content { height: 350px; overflow-y: auto; padding: 10px 0; }
+.box-content::-webkit-scrollbar { width: 4px; }
+.box-content::-webkit-scrollbar-thumb { background: #8338ec; border-radius: 10px; }
+body.dark-theme .box-content::-webkit-scrollbar-thumb { background: #00ff66; }
+.box-content a { display: block; padding: 12px 20px; font-weight: 600; font-size: 14px; border-bottom: 1px dashed #eee; color: #444; }
+.highlight-search { background-color: #ffcc00 !important; color: #000 !important; font-weight: bold; transition: 0.5s; }
 
-.box-title {
-    background: linear-gradient(135deg, #002b80, #0056b3);
-    color: #fff;
-    text-align: center;
-    padding: 15px;
-    font-size: 20px;
-    font-weight: bold;
-}
+.bottom-features { display: flex; flex-wrap: wrap; gap: 30px; padding: 0 5% 50px; align-items: stretch; }
+.stats-box { flex: 1.5; min-width: 300px; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+.stat-item { text-align: center; flex: 1; min-width: 100px; }
+.stat-item i { font-size: 30px; color: #ffcc00; margin-bottom: 10px; display: block; }
+.stat-item h3 { font-size: 28px; color: #1a103c; font-weight: 800; display: inline-block; }
+.stat-item span { font-size: 28px; color: #1a103c; font-weight: 800; }
+body.dark-theme .stat-item span { color: #00ff66; }
+.stat-item p { font-size: 14px; color: #666; font-weight: 600; margin-top: 5px; }
 
-.box-content {
-    height: 320px;
-    overflow-y: auto;
-    background: #fff;
-}
+.stay-updated { flex: 1; min-width: 300px; background: linear-gradient(135deg, #8338ec, #6b21a8); padding: 30px; border-radius: 15px; color: white; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; }
+.stay-updated h3 { font-size: 22px; margin-bottom: 10px; z-index: 2; }
+.stay-updated p { font-size: 14px; margin-bottom: 20px; opacity: 0.9; z-index: 2; }
+.stay-updated .input-group { display: flex; gap: 10px; z-index: 2; }
+.stay-updated input { flex: 1; padding: 12px; border: none; border-radius: 8px; outline: none; }
+.stay-updated button { padding: 12px 20px; background: white; color: #8338ec; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+.stay-updated button:hover { background: #ffcc00; color: #000; }
+.stay-updated i.bg-icon { position: absolute; right: -20px; bottom: -20px; font-size: 150px; opacity: 0.1; transform: rotate(-15deg); }
 
-.box-content::-webkit-scrollbar { width: 5px; }
-.box-content::-webkit-scrollbar-thumb { background: #ff6600; border-radius: 10px; }
+.floating-chat { position: fixed; bottom: 30px; right: 30px; background: #25d366; color: white; padding: 12px 20px; border-radius: 50px; font-weight: bold; font-size: 15px; display: flex; align-items: center; gap: 10px; box-shadow: 0 10px 20px rgba(37,211,102,0.3); z-index: 9999; text-decoration: none; transition: 0.3s; }
+.floating-chat:hover { transform: translateY(-5px); box-shadow: 0 15px 25px rgba(37,211,102,0.5); color: white; }
 
-.box-content a {
-    display: block;
-    padding: 12px 20px;
-    text-decoration: none;
-    color: #444;
-    font-weight: 600;
-    border-bottom: 1px solid #f0f0f0;
-    transition: 0.3s;
-    position: relative;
-    padding-left: 30px;
-    font-size: 15px;
-}
+/* ================= FOOTER ================= */
+.footer { background: #0b061e; color: white; padding: 60px 5% 20px; border-top: 4px solid #8338ec; }
+.footer-container { display: flex; flex-wrap: wrap; gap: 30px; justify-content: space-between; margin-bottom: 40px; }
+.footer-box { flex: 1; min-width: 200px; }
+.footer-box h2 { font-size: 24px; margin-bottom: 15px; }
+.footer-box h3 { font-size: 18px; margin-bottom: 20px; color: white; }
+.footer-box p, .footer-box a { color: #aaa; margin: 10px 0; display: block; font-size: 14px; transition: 0.3s; }
+.footer-box a:hover { color: #8338ec; padding-left: 5px; }
+body.dark-theme .footer-box a:hover { color: #00ff66; }
 
-.box-content a::before {
-    content: '►';
-    position: absolute;
-    left: 12px;
-    color: #ff6600;
-    font-size: 12px;
-    top: 14px;
-    transition: 0.3s;
-}
+.footer-social { display: flex; gap: 10px; margin-top: 20px; }
+.footer-social a { width: 35px; height: 35px; border-radius: 50%; background: #1a103c; display: flex; justify-content: center; align-items: center; color: white; transition: 0.3s; border: 1px solid #444; }
+.footer-social a:hover { background: #8338ec; transform: translateY(-3px); border-color: #8338ec; }
+body.dark-theme .footer-social a:hover { background: #00ff66; color: black; border-color: #00ff66; }
 
-.box-content a:hover {
-    background: #fff8f5;
-    color: #ff6600;
-    padding-left: 35px;
-}
-
-.view-more {
-    display: block;
-    background: #f8f9fa;
-    color: #002b80;
-    text-align: center;
-    padding: 12px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: 0.3s;
-    border-top: 1px solid #eee;
-}
-
-.view-more:hover {
-    background: #002b80;
-    color: #fff;
-}
-
-/* TOAST NOTIFICATION CSS (NEW) */
-#newLinkToast {
-    display: none; 
-    position: fixed; 
-    bottom: 20px; 
-    right: 20px; 
-    background: white; 
-    border-left: 6px solid #ff6600; 
-    padding: 15px 25px 15px 15px; 
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2); 
-    z-index: 10001; 
-    border-radius: 8px; 
-    animation: slideInRight 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-@keyframes slideInRight { 
-    from { transform: translateX(120%); opacity: 0; } 
-    to { transform: translateX(0); opacity: 1; } 
-}
-
-/* MOBILE RESPONSIVE TWEAKS */
-@media(max-width: 768px){
-    .box-container { flex-direction: column; }
-    .hero { 
-        height: 250px; 
-        border-radius: 0 0 15px 15px; 
-    }
-}
-
-/* FOOTER */
-.footer {
-    background: #111;
-    color: white;
-    padding: 50px 20px 20px;
-    border-top: 4px solid #ff6600;
-}
-
-.footer-container {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.footer-box {
-    flex: 1;
-    min-width: 250px;
-}
-
-.footer-box h3 { margin-bottom: 20px; color: #ff6600; }
-.footer-box p, .footer-box a { color: #bbb; margin: 10px 0; text-decoration: none; display: block; transition: 0.3s; }
-.footer-box a:hover { color: #fff; padding-left: 5px; }
-
-.footer-social a {
-    display: inline-flex;
-    width: 40px;
-    height: 40px;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #444;
-    border-radius: 50%;
-    margin-right: 10px;
-    color: #fff;
-    transition: 0.3s;
-    background: #222;
-}
-
-.footer-social a:hover {
-    background: #ff6600;
-    border-color: #ff6600;
-    transform: translateY(-3px);
-}
-
-.footer-bottom {
-    border-top: 1px solid #333;
-    margin-top: 30px;
-    padding-top: 20px;
-    text-align: center;
-    color: #888;
-    font-size: 14px;
-}
+.footer-bottom { border-top: 1px solid #2a1b54; padding-top: 20px; display: flex; justify-content: space-between; flex-wrap: wrap; align-items: center; font-size: 13px; color: #888; gap: 10px; }
+.visitor-count-box { font-weight: bold; color: #d1d1d1; }
+.visitor-count-box span { color: #00ff66; font-size: 15px; }
 </style>  
 </head>
 <body>
 
-<div class="top-header">
-    <div class="logo-box">
-        <img src="X.jpg" alt="Logo">
-    </div>
-    <div class="header-info">
-        <h2>EduPoint India</h2>
-        <p>📞 +91 9939171583</p>
-        <span class="admission-badge" onclick="window.location.href='rk.html'">Register Now</span>
-    </div>
-    <div class="social-icons">
-        <a href="https://whatsapp.com/channel/0029VbBgQJMKgsNuvHP1EV1v"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://www.instagram.com/raju_kumar_nke?igsh=ajkxaWRodTBlenhx"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.facebook.com/share/1KrAUf4uwc/"><i class="fab fa-facebook-f"></i></a>
+<div class="super-top-bar">
+    <div class="left"><i class="fa fa-rocket"></i> Welcome to EduPoint India – Your Success, Our Mission</div>
+    <div class="right">
+        <span><i class="fa fa-headset"></i> Help Desk</span> | 
+        <span><i class="fa fa-envelope"></i> Email Us</span> | 
+        <span><i class="fa fa-question-circle"></i> FAQ</span> | 
+        <span onclick="toggleDarkMode()">
+            <i id="darkModeIcon" class="fa fa-moon"></i> Dark Mode 
+            <div class="toggle-switch"></div>
+        </span>
     </div>
 </div>
 
-<header>
-    <a href="Codenixhindi.apk" class="nav-btn">Download my app</a>
-    <a href="home.html" class="nav-btn">Home</a>
-    <a href="about.html" class="nav-btn">About</a>
-    <a href="pdf.html" class="nav-btn">PDF</a>
-    <a href="contect.html" class="nav-btn">Contact</a>
-    <a href="any.html" class="nav-btn">Animation</a>
-    <a href="privacy.html" class="nav-btn" style="position:relative;">
-      Privacy Policy
-      <span class="new-badge">New</span>
-    </a>
-</header>
+<div class="main-header">
+    <div class="logo-area">
+        <div class="logo-box"><img src="X.jpg" alt="EduPoint India Logo"></div>
+        <div class="logo-text">
+            <h1>EduPoint India</h1>
+            <p>Education | Updates | Results | Services</p>
+        </div>
+    </div>
+    
+    <div class="header-contacts">
+        <div class="contact-item">
+            <div class="contact-icon"><i class="fa fa-phone-alt"></i></div>
+            <div class="contact-info"><p>Call Us</p><h4>+91 9939171583</h4></div>
+        </div>
+        <div class="contact-item">
+            <div class="contact-icon"><i class="fa fa-envelope-open-text"></i></div>
+            <div class="contact-info"><p>Email Us</p><h4>rajukumarcse83@gmail.com</h4></div>
+        </div>
+    </div>
 
-<!-- HERO SECTION (Admin Controlled Slider) -->
-<div class="hero" id="heroSliderContainer">
-    <!-- Photos will dynamically load here via JavaScript -->
+    <div class="header-actions">
+        <div class="register-btn" onclick="window.location.href='rk.html'">
+            <i class="fa fa-user-plus"></i> Register Now
+        </div>
+        <div class="social-icons-head">
+            <a href="https://whatsapp.com/channel/0029VbBgQJMKgsNuvHP1EV1v" class="wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.instagram.com/raju_kumar_nke?igsh=ajkxaWRodTBlenhx" class="ig" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/share/1KrAUf4uwc/" class="fb" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="yt" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+    </div>
 </div>
 
-<div class="notice-bar">
-    <div class="notice-title">📢 महत्वपूर्ण सूचना</div>
+<nav class="main-nav">
+    <ul class="nav-links">
+        <li><a href="home.html"><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="about.html">About Us <i class="fa fa-angle-down"></i></a></li>
+        <li><a href="#">Courses <i class="fa fa-angle-down"></i></a></li>
+        <li><a href="pdf.html">Downloads <i class="fa fa-angle-down"></i></a></li>
+        <li><a href="#">Results <i class="fa fa-angle-down"></i></a></li>
+        <li><a href="#">Online Form</a></li>
+        <li><a href="contect.html">Contact Us <i class="fa fa-angle-down"></i></a></li>
+        <li>
+            <a href="privacy.html">Privacy Policy
+                <span class="new-badge">New</span>
+            </a>
+        </li>
+    </ul>
+    
+    <div class="nav-search">
+        <input type="text" placeholder="Search here...">
+        <i class="fa fa-search"></i>
+    </div>
+</nav>
+
+<div class="hero">
+    <button class="slider-arrow prev-arrow" onclick="prevSlide()"><i class="fa fa-chevron-left"></i></button>
+    
+    <div class="hero-content" data-aos="fade-right">
+        <h1>Shaping Careers,<br><span>Building Futures</span></h1>
+        <p>Get latest updates, results, online forms and important notices all in one place. Start your learning journey with us today.</p>
+        <div class="hero-buttons">
+            <a href="#" class="btn-primary">Explore Now <i class="fa fa-arrow-right"></i></a>
+            <a href="#" class="btn-outline"><i class="fa fa-clipboard-list"></i> View Results</a>
+        </div>
+    </div>
+    
+    <div class="hero-slider-wrapper" id="heroSliderContainer" data-aos="fade-left"></div>
+    <div class="slider-dots" id="sliderDots"></div>
+    <button class="slider-arrow next-arrow" onclick="nextSlide()"><i class="fa fa-chevron-right"></i></button>
+</div>
+
+<div class="quick-features" data-aos="fade-up">
+    <div class="feature-item">
+        <div class="feature-icon"><i class="fa fa-bullhorn"></i></div>
+        <div class="feature-text"><h4>Latest Updates</h4><p>Get all recent updates</p></div>
+    </div>
+    <div class="feature-item">
+        <div class="feature-icon"><i class="fa fa-graduation-cap"></i></div>
+        <div class="feature-text"><h4>Results</h4><p>Check exam results</p></div>
+    </div>
+    <div class="feature-item">
+        <div class="feature-icon"><i class="fa fa-clipboard-list"></i></div>
+        <div class="feature-text"><h4>Online Forms</h4><p>Submit forms online</p></div>
+    </div>
+    <div class="feature-item">
+        <div class="feature-icon"><i class="fa fa-download"></i></div>
+        <div class="feature-text"><h4>Downloads</h4><p>Important documents</p></div>
+    </div>
+    <div class="feature-item">
+        <div class="feature-icon"><i class="fa fa-user"></i></div>
+        <div class="feature-text"><h4>Student Login</h4><p>Access dashboard</p></div>
+    </div>
+    <div class="feature-item">
+        <div class="feature-icon"><i class="fa fa-headset"></i></div>
+        <div class="feature-text"><h4>Help Desk</h4><p>We are here to help</p></div>
+    </div>
+</div>
+
+<div class="notice-bar" data-aos="fade-up">
+    <div class="notice-title"><i class="fa fa-bullhorn"></i> Latest News</div>
     <marquee id="liveMarquee">welcome 🙏 all User | 🔐 अधिक सुविधाओं और बेहतर सेवाओं का लाभ उठाने के लिए कृपया Register करें या Login करें।</marquee>
+</div>
+
+<div class="search-section" data-aos="fade-up">
+    <input type="text" id="pageSearchInput" placeholder="Search for updates, results, or online forms...">
+    <button onclick="searchWebsiteContent()"><i class="fa fa-search"></i> Find</button>
 </div>
 
 <div class="container">
     <div class="about" data-aos="fade-up">
-        <h2>हमारे बारे में</h2>
+        <h2><i class="fa fa-university"></i> हमारे बारे में</h2>
         <p>मैं एक विद्यार्थी हूँ तथा आधुनिक तकनीकी शिक्षा के क्षेत्र में निरंतर अध्ययन एवं अभ्यास कर रहा हूँ। यह वेबसाइट मेरे ज्ञान, रचनात्मकता तथा तकनीकी कौशल को प्रदर्शित करने के उद्देश्य से बनाई गई है।</p>
-        <br>
         <p>मेरा उद्देश्य नई तकनीकों को सीखकर भविष्य में एक सफल तकनीकी विशेषज्ञ बनना है।</p>
-        <br>
-        <p style="font-weight: bold; color: #002b80;">“सीखना ही सफलता की प्रथम सीढ़ी है।”</p>
+        <p style="font-weight: bold; margin-top: 20px;">“सीखना ही सफलता की प्रथम सीढ़ी है!”</p>
     </div>
 
     <div class="hacker-box" data-aos="fade-up" data-aos-delay="100">
         <div id="loginPage">
-            <h2>LOGIN</h2>
-            <input type="email" id="loginEmail" placeholder="Email">
+            <h2><i class="fa fa-user-circle"></i> Student / User Login</h2>
+            <input type="email" id="loginEmail" placeholder="Email Address">
             <input type="password" id="loginPassword" placeholder="Password">
-            <button onclick="login()">LOGIN</button>
-            <p>No account? <a onclick="showRegister()">Register</a></p>
+            <button onclick="login()">Login <i class="fa fa-sign-in-alt"></i></button>
+            <p>Don't have an account? <a onclick="showRegister()">Register Now</a></p>
         </div>
 
         <div id="registerPage" class="hidden">
-            <h2>REGISTER</h2>
+            <h2><i class="fa fa-user-plus"></i> Register</h2>
             <input type="text" id="username" placeholder="User Name">
             <input type="tel" id="mobile" placeholder="Mobile Number">
             <input type="email" id="email" placeholder="Email">
-            
-            <select name="gender" required>
-              <option value="" disabled selected>Select Gender</option>
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-              <option value="Other">Other</option>
-            </select>
-            
-            <input id="dob" type="text" placeholder="Date of Birth" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'">
-            
-            <select id="state">
-                <option value="" disabled selected>Select State</option>
-                <option>Andhra Pradesh</option> <option>Bihar</option> <option>Uttar Pradesh</option> <option>Delhi</option>
-            </select>
-            
-            <select id="district">
-                <option value="" disabled selected>Select District</option>
-                <option>Patna</option> <option>West Champaran (Bettiah)</option> <option>None (Other State)</option>
-            </select>
-          
             <input type="password" id="password" placeholder="Password">
             <input type="password" id="confirmPassword" placeholder="Confirm Password">
-            
-            <button onclick="register()">REGISTER</button>
-            <p><a onclick="showLogin()">Back to Login</a></p>
+            <button onclick="register()">Create Account</button>
+            <p><a onclick="showLogin()"><i class="fa fa-arrow-left"></i> Back to Login</a></p>
         </div>
     </div>
 </div>
 
 <div class="box-container">
     <div class="info-box" data-aos="zoom-in" data-aos-delay="100">
-        <div class="box-title">Latest Update</div>
-        <div class="box-content" id="latestUpdatesBox">
-            <a href="#">Bihar Board Result 2026 Released</a>
-            <a href="#">CTET Form 2026 Apply Online</a>
+        <div class="box-title-header">
+            <h3><i class="fa fa-file-alt"></i> Latest Updates</h3>
+            <a href="#" class="view-all">View All</a>
         </div>
-        <a href="#" class="view-more">View More...</a>
+        <div class="box-content" id="latestUpdatesBox"></div>
     </div>
 
     <div class="info-box" data-aos="zoom-in" data-aos-delay="200">
-        <div class="box-title">Results</div>
-        <div class="box-content" id="resultsBox">
-            <a href="#">BSEB 10th Result</a>
-            <a href="#">BSEB 12th Result</a>
+        <div class="box-title-header">
+            <h3><i class="fa fa-chart-line"></i> Results</h3>
+            <a href="#" class="view-all">View All</a>
         </div>
-        <a href="#" class="view-more">View More...</a>
+        <div class="box-content" id="resultsBox"></div>
     </div>
 
     <div class="info-box" data-aos="zoom-in" data-aos-delay="300">
-        <div class="box-title">Online Form</div>
-        <div class="box-content" id="onlineFormsBox">
-            <a href="#">SSC CGL Online Form</a>
-            <a href="#">UPSC Online Form</a>
+        <div class="box-title-header">
+            <h3><i class="fa fa-laptop"></i> Online Forms</h3>
+            <a href="#" class="view-all">View All</a>
         </div>
-        <a href="#" class="view-more">View More...</a>
+        <div class="box-content" id="onlineFormsBox"></div>
     </div>
 </div>
+
+<div class="bottom-features">
+    <div class="stats-box" data-aos="fade-right">
+        <div class="stat-item">
+            <i class="fa fa-users"></i>
+            <h3 class="live-counter" data-target="1500">0</h3><span>+</span>
+            <p>Students</p>
+        </div>
+        <div class="stat-item">
+            <i class="fa fa-book"></i>
+            <h3 class="live-counter" data-target="50">0</h3><span>+</span>
+            <p>Courses</p>
+        </div>
+        <div class="stat-item">
+            <i class="fa fa-file-pdf"></i>
+            <h3 class="live-counter" data-target="120">0</h3><span>+</span>
+            <p>Resources</p>
+        </div>
+        <div class="stat-item">
+            <i class="fa fa-trophy"></i>
+            <h3 class="live-counter" data-target="25">0</h3><span>+</span>
+            <p>Achievements</p>
+        </div>
+    </div>
+    
+    <div class="stay-updated" data-aos="fade-left">
+        <i class="fa fa-envelope-open-text bg-icon"></i>
+        <h3>Stay Updated!</h3>
+        <p>Subscribe to get latest updates and notifications in your inbox.</p>
+        <div class="input-group">
+            <input type="email" placeholder="Enter your email">
+            <button>Subscribe</button>
+        </div>
+    </div>
+</div>
+
+<a href="https://whatsapp.com/channel/0029VbBgQJMKgsNuvHP1EV1v" class="floating-chat" target="_blank">
+    <i class="fab fa-whatsapp"></i> Chat with us
+</a>
 
 <footer class="footer">
     <div class="footer-container">
         <div class="footer-box">
-            <h2 style="margin-bottom: 15px;"><span style="color:white;">My</span><span style="color:#ff6600;">Website</span></h2>
-            <p>My author social media platform from Bihar, India.</p>
-            <div class="footer-social" style="margin-top: 15px;">
-                <a href="https://www.facebook.com/share/1KrAUf4uwc/"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
-                <a href="https://www.instagram.com/raju_kumar_nke?igsh=ajkxaWRodTBlenhx"><i class="fab fa-instagram"></i></a>
-                <a href="https://whatsapp.com/channel/0029VbBgQJMKgsNuvHP1EV1v"><i class="fab fa-whatsapp"></i></a>
+            <h2>EduPoint India</h2>
+            <p>Your one-stop destination for education updates, results, online forms and more.</p>
+            <div class="footer-social">
+                <a href="https://www.facebook.com/share/1KrAUf4uwc/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.instagram.com/raju_kumar_nke?igsh=ajkxaWRodTBlenhx" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://whatsapp.com/channel/0029VbBgQJMKgsNuvHP1EV1v" target="_blank"><i class="fab fa-whatsapp"></i></a>
             </div>
         </div>
-
+        
         <div class="footer-box">
-            <h3>QUICK LINKS</h3>
+            <h3>Quick Links</h3>
             <a href="home.html">Home</a>
             <a href="about.html">About Us</a>
-            <a href="privacy.html">Privacy</a>
-            <a href="#">Courses</a>
-            <a href="#">Contact</a>
+            <a href="contect.html">Contact Us</a>
         </div>
-
+        
         <div class="footer-box">
-            <h3>CONTACT</h3>
-            <p>Mr. Raju Kumar</p>
-            <p>rajukumarcse83@gmail.com</p>
-            <p>+91 9939171583</p>
-            <p>Bihar, India</p>
+            <h3>Contact Us</h3>
+            <p><i class="fa fa-envelope"></i> rajukumarcse83@gmail.com</p>
+            <p><i class="fa fa-phone"></i> +91 9939171583</p>
+            <p><i class="fa fa-map-marker-alt"></i> Bihar, India</p>
         </div>
     </div>
     
     <div class="footer-bottom">
-        <p>2026 MyWebsite — Raju Kumar</p>
-        <span>Made with ❤️ Narkatiaganj (West Champaran, Bihar), India</span>
+        <p>© 2026 EduPoint India. All Rights Reserved.</p>
+        <p>Made with ❤️ by Raju Kumar</p>
+        <div class="visitor-count-box">
+            Total Visitors: <span id="realVisitorCount">Loading...</span> <i class="fa fa-chart-bar"></i>
+        </div>
     </div>
 </footer>
 
-<!-- NEW LINK TOAST POPUP -->
-<div id="newLinkToast">
-    <button onclick="document.getElementById('newLinkToast').style.display='none'" style="position:absolute; top:5px; right:8px; background:none; border:none; font-size:20px; color:#999; cursor:pointer;">&times;</button>
-    <div style="font-size: 12px; font-weight:bold; color:#002b80; text-transform:uppercase; margin-bottom:5px;" id="toastCategory">🔔 New Update</div>
-    <a href="#" target="_blank" id="toastText" style="display:block; font-size:16px; font-weight:bold; color:#ff6600; text-decoration:none; max-width:250px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Link Text</a>
-    <div style="font-size:11px; color:#666; margin-top:5px;">Click to view details</div>
-</div>
+<script>
+    function toggleDarkMode() {
+        const body = document.body;
+        const icon = document.getElementById('darkModeIcon');
+        body.classList.toggle('dark-theme');
+        if (body.classList.contains('dark-theme')) {
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
+            localStorage.setItem('theme', 'light');
+        }
+    }
+    if(localStorage.getItem('theme') === 'dark') { toggleDarkMode(); }
 
-<!-- FIREBASE INTEGRATION WITH LIVE SYNC & SLIDER -->
+    function searchWebsiteContent() {
+        const query = document.getElementById('pageSearchInput').value.toLowerCase().trim();
+        if(!query) { alert("Please enter something to search!"); return; }
+        const allLinks = document.querySelectorAll('.box-content a');
+        let found = false;
+        allLinks.forEach(link => {
+            link.classList.remove('highlight-search');
+            if(link.innerText.toLowerCase().includes(query)) {
+                if(!found) { link.scrollIntoView({ behavior: 'smooth', block: 'center' }); found = true; }
+                link.classList.add('highlight-search');
+                setTimeout(() => { link.classList.remove('highlight-search'); }, 3000);
+            }
+        });
+        if(!found) { alert(`No results found for "${query}" on this page.`); }
+    }
+
+    const counters = document.querySelectorAll('.live-counter');
+    const observer = new IntersectionObserver((entries) => {
+        if(entries[0].isIntersecting) {
+            counters.forEach(counter => {
+                const updateCount = () => {
+                    const target = +counter.getAttribute('data-target');
+                    const count = +counter.innerText;
+                    const inc = target / 200;
+                    if(count < target) { counter.innerText = Math.ceil(count + inc); setTimeout(updateCount, 10); } 
+                    else { counter.innerText = target; }
+                };
+                updateCount();
+            });
+            observer.disconnect(); 
+        }
+    });
+    const statsBox = document.querySelector('.stats-box');
+    if(statsBox) { observer.observe(statsBox); }
+</script>
+
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+import { getDatabase, ref, set, onValue, get, child } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const firebaseConfig = {
@@ -762,46 +574,34 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 const auth = getAuth(app);
 
-// 1. Live Global Notice Sync
+// Visitor Tracking
+const visitorRef = ref(db, 'webContent/visitorCount');
+onValue(visitorRef, (snapshot) => {
+    let count = snapshot.val() || 0;
+    document.getElementById('realVisitorCount').innerText = count.toLocaleString();
+});
+if (!localStorage.getItem('hasVisitedEduPoint')) {
+    get(child(ref(db), 'webContent/visitorCount')).then((snapshot) => {
+        let currentCount = snapshot.val() || 0;
+        set(visitorRef, currentCount + 1);
+        localStorage.setItem('hasVisitedEduPoint', 'true');
+    });
+}
+
+// Global Notice
 const noticeContainer = document.getElementById("liveMarquee");
 onValue(ref(db, 'webContent/globalNotice'), (snapshot) => {
     if(snapshot.exists()) { noticeContainer.innerText = snapshot.val(); }
 });
 
-// 2. Live Box Updates Sync (WITH NEW TOAST POPUP LOGIC)
-let knownLinks = new Set();
-let isFirstLoad = { latestUpdates: false, results: false, onlineForms: false };
-
-function renderLiveBoxes(nodeName, boxId, boxTitle) {
+// Dynamic Data Rendering
+function renderLiveBoxes(nodeName, boxId) {
     onValue(ref(db, `webContent/boxUpdates/${nodeName}`), (snapshot) => {
         const container = document.getElementById(boxId);
         container.innerHTML = ""; 
         if(snapshot.exists()) {
             const data = snapshot.val();
-            const currentKeys = Object.keys(data);
-            
-            // Check for New Link added by Admin
-            if(isFirstLoad[nodeName]) {
-                currentKeys.forEach(key => {
-                    if(!knownLinks.has(key)) {
-                        // Naya Link Detect hua hai! Popup Show karo
-                        const toast = document.getElementById("newLinkToast");
-                        document.getElementById("toastCategory").innerText = `🔔 New in ${boxTitle}`;
-                        const linkData = data[key];
-                        const tText = document.getElementById("toastText");
-                        tText.innerText = linkData.text;
-                        tText.href = linkData.url;
-                        toast.style.display = "block";
-                        
-                        // 10 second baad popup automatically hide ho jayega
-                        setTimeout(() => { toast.style.display = "none"; }, 10000);
-                    }
-                });
-            }
-
-            // Render Links
-            currentKeys.forEach(key => {
-                knownLinks.add(key); // Yaad rakhne ke liye save kar lo
+            Object.keys(data).forEach(key => {
                 const item = data[key];
                 const aTag = document.createElement('a');
                 aTag.href = item.url;
@@ -809,52 +609,75 @@ function renderLiveBoxes(nodeName, boxId, boxTitle) {
                 aTag.innerText = item.text;
                 container.appendChild(aTag);
             });
-            isFirstLoad[nodeName] = true;
         } else {
             container.innerHTML = "<p style='padding:15px;color:#888;'>No updates available.</p>";
-            isFirstLoad[nodeName] = true;
         }
     });
 }
-renderLiveBoxes('latestUpdates', 'latestUpdatesBox', 'Latest Updates');
-renderLiveBoxes('results', 'resultsBox', 'Results');
-renderLiveBoxes('onlineForms', 'onlineFormsBox', 'Online Forms');
+renderLiveBoxes('latestUpdates', 'latestUpdatesBox');
+renderLiveBoxes('results', 'resultsBox');
+renderLiveBoxes('onlineForms', 'onlineFormsBox');
 
-// 3. Hero Slider Images Sync & Auto Slide
+// Media Carousel Architecture
 let currentSlideIndex = 0;
 let slideElements = [];
-
 onValue(ref(db, 'webContent/heroImages'), (snapshot) => {
     const heroContainer = document.getElementById("heroSliderContainer");
-    
+    const dotsContainer = document.getElementById("sliderDots");
     document.querySelectorAll('.hero-slide').forEach(img => img.remove());
+    if(dotsContainer) dotsContainer.innerHTML = "";
     slideElements = [];
     currentSlideIndex = 0;
     
     if(snapshot.exists()) {
         const data = snapshot.val();
-        let isFirst = true;
-        
-        Object.keys(data).forEach(key => {
-            const img = document.createElement('img');
-            img.src = data[key].url;
-            img.className = 'hero-slide';
-            if(isFirst) { img.classList.add('active'); isFirst = false; }
-            heroContainer.insertBefore(img, heroContainer.firstChild); 
-            slideElements.push(img);
-        });
+        let listKeys = Object.keys(data);
+        if(listKeys.length > 0) {
+            let isFirst = true;
+            listKeys.forEach((key, index) => {
+                const img = document.createElement('img');
+                img.src = data[key].url;
+                img.className = 'hero-slide';
+                if(isFirst) { img.classList.add('active'); }
+                heroContainer.insertBefore(img, heroContainer.firstChild); 
+                slideElements.push(img);
+                
+                const dot = document.createElement('div');
+                dot.className = 'dot';
+                if(isFirst) { dot.classList.add('active'); isFirst = false; }
+                dot.onclick = () => goToSlide(index);
+                if(dotsContainer) dotsContainer.appendChild(dot);
+            });
+        }
     }
 });
-
-setInterval(() => {
+function updateSliderUI() {
+    if(slideElements.length === 0) return;
+    slideElements.forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.dot').forEach(d => d.classList.remove('active'));
+    slideElements[currentSlideIndex].classList.add('active');
+    const targetDot = document.querySelectorAll('.dot')[currentSlideIndex];
+    if(targetDot) targetDot.classList.add('active');
+}
+window.nextSlide = () => {
     if(slideElements.length > 1) {
-        slideElements[currentSlideIndex].classList.remove('active');
         currentSlideIndex = (currentSlideIndex + 1) % slideElements.length;
-        slideElements[currentSlideIndex].classList.add('active');
+        updateSliderUI();
     }
-}, 4000); 
+};
+window.prevSlide = () => {
+    if(slideElements.length > 1) {
+        currentSlideIndex = (currentSlideIndex - 1 + slideElements.length) % slideElements.length;
+        updateSliderUI();
+    }
+};
+window.goToSlide = (index) => {
+    currentSlideIndex = index;
+    updateSliderUI();
+};
+setInterval(() => { window.nextSlide(); }, 4000); 
 
-// --- LOGIN & REGISTER LOGIC ---
+// Authentication Context
 window.login = () => {
     let email = document.getElementById("loginEmail").value;
     let password = document.getElementById("loginPassword").value;
@@ -862,29 +685,17 @@ window.login = () => {
     .then(()=>{ alert("Login Successful"); window.location.href="project4.html"; })
     .catch(()=>alert("Invalid Login"));
 };
-
 window.register = () => {
-    let username = document.getElementById("username").value; 
-    let mobile = document.getElementById("mobile").value; 
     let email = document.getElementById("email").value; 
-    let dob = document.getElementById("dob").value; 
-    let state = document.getElementById("state").value; 
-    let district = document.getElementById("district").value; 
     let password = document.getElementById("password").value; 
     let confirmPassword = document.getElementById("confirmPassword").value;
-    
-    if(!username || !mobile || !email || !dob || !state || !district || !password || !confirmPassword){ alert("Please fill all fields"); return; }
+    if(!email || !password || !confirmPassword){ alert("Please fill all fields"); return; }
     if(password !== confirmPassword){ alert("Password not match"); return; }
     if(password.length < 6){ alert("Password minimum 6 characters ka hona chahiye"); return; }
-    
     createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
-        set(ref(db, 'users/' + userCredential.user.uid), {
-            username: username, mobile: mobile, email: email, dob: dob, state: state, district: district
-        });
         alert("Registration Successful"); showLogin();
     }).catch((err) => { alert(err.message); console.log(err); });
 };
-
 window.showRegister = () => {
     document.getElementById("loginPage").classList.add("hidden");
     document.getElementById("registerPage").classList.remove("hidden");
@@ -896,38 +707,6 @@ window.showLogin = () => {
 </script>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-    AOS.init({ duration: 800, once: true, offset: 50 });
-</script>
-
-<!-- LIVE NOTIFICATION MODAL -->
-<div id="liveAlertModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:10000; justify-content:center; align-items:center;">
-    <div style="background:white; padding:30px; border-radius:15px; width:90%; max-width:400px; text-align:center; animation: dropDown 0.5s ease;">
-        <div style="font-size:40px; color:#ff6600; margin-bottom:15px;"><i class="fa fa-bell"></i></div>
-        <h2 id="alertTitle" style="color:#002b80; margin-bottom:10px;">Title</h2>
-        <p id="alertMsg" style="color:#444; margin-bottom:25px; line-height:1.5;">Message goes here</p>
-        <button onclick="document.getElementById('liveAlertModal').style.display='none'" style="background:#002b80; color:white; padding:10px 25px; border:none; border-radius:8px; font-size:16px; cursor:pointer;">Close</button>
-    </div>
-</div>
-<style> @keyframes dropDown { from { transform: translateY(-50px); opacity:0; } to { transform: translateY(0); opacity:1; } } </style>
-
-<script type="module">
-import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-const db = getDatabase(); 
-
-let lastAlertTime = 0;
-onValue(ref(db, 'webContent/liveAlert'), (snapshot) => {
-    if(snapshot.exists()) {
-        const data = snapshot.val();
-        if(data.time > lastAlertTime) {
-            document.getElementById("alertTitle").innerText = data.title;
-            document.getElementById("alertMsg").innerText = data.message;
-            document.getElementById("liveAlertModal").style.display = "flex";
-            lastAlertTime = Date.now(); 
-        }
-    }
-});
-</script>
-
+<script>AOS.init({ duration: 800, once: true, offset: 50 });</script>
 </body>
 </html>
