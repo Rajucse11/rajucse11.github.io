@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Become an Instructor | CodeNix</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* ================= GLOBAL VARIABLES & THEMES ================= */
+        :root {
+            /* 🌞 LIGHT THEME (CodeNix Default) */
+            --bg-main: #f9f9fb;
+            --bg-card: #ffffff;
+            --text-main: #1a1a2e;
+            --text-sub: #666666;
+            --border-color: #e8e8e8;
+            --primary: #5a4bda;
+            --primary-hover: #4535b8;
+            --badge-bg: #f0edff;
+            --footer-bg: #13141a;
+            --footer-text: #8a8a9e;
+            --input-bg: #ffffff;
+            --shadow-light: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        body.dark-theme {
+            /* 🌙 DARK THEME (EduPoint Match) */
+            --bg-main: #0a0a0a;
+            --bg-card: #111412;
+            --text-main: #d4fcd8;
+            --text-sub: #a1c9ad;
+            --border-color: #1b3a24;
+            --primary: #00ff66;
+            --primary-hover: #00cc52;
+            --badge-bg: rgba(0, 255, 102, 0.1);
+            --footer-bg: #050505;
+            --footer-text: #a1c9ad;
+            --input-bg: #1a1f1b;
+            --shadow-light: 0 10px 30px rgba(0,255,102,0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, sans-serif; transition: background-color 0.3s, color 0.3s, border-color 0.3s; }
+        body { background: var(--bg-main); color: var(--text-main); overflow-x: hidden; }
+        a { text-decoration: none; }
+        ul { list-style: none; }
+
+        /* ================= BUTTONS ================= */
+        .btn { padding: 12px 24px; border-radius: 6px; font-weight: 600; cursor: pointer; border: none; font-size: 14px; transition: 0.3s; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+        .btn-primary { background: var(--primary); color: #fff; }
+        .btn-primary:hover { background: var(--primary-hover); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(90, 75, 218, 0.3); }
+        body.dark-theme .btn-primary { color: #000; box-shadow: 0 5px 15px rgba(0, 255, 102, 0.2); }
+        .btn-outline { background: transparent; border: 1px solid var(--text-main); color: var(--text-main); }
+        .btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+
+        /* ================= HEADER & MOBILE MENU ================= */
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: var(--bg-card); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+        .logo { font-size: 24px; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 10px; }
+        .logo i { color: var(--primary); font-size: 28px; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { color: var(--text-main); font-weight: 500; font-size: 15px; transition: 0.2s; }
+        .nav-links a:hover { color: var(--primary); }
+        
+        .nav-actions { display: flex; align-items: center; gap: 12px; }
+        
+        /* Dark Mode Toggle */
+        .toggle-switch { position: relative; width: 44px; height: 24px; background: #ccc; border-radius: 20px; cursor: pointer; display: flex; align-items: center; padding: 2px; flex-shrink: 0; }
+        .toggle-switch::after { content: ''; width: 20px; height: 20px; background: white; border-radius: 50%; transition: 0.3s; }
+        body.dark-theme .toggle-switch { background: var(--primary); }
+        body.dark-theme .toggle-switch::after { transform: translateX(20px); }
+
+        /* Hamburger Icon */
+        .hamburger { display: none; font-size: 24px; color: var(--text-main); cursor: pointer; margin-left: 10px; }
+        
+        /* Mobile Dropdown Menu */
+        .mobile-menu { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: var(--bg-card); border-top: 1px solid var(--border-color); flex-direction: column; box-shadow: 0 10px 20px rgba(0,0,0,0.1); z-index: 999; }
+        .mobile-menu a { padding: 15px 25px; color: var(--text-main); font-weight: 600; border-bottom: 1px solid var(--border-color); font-size: 15px; }
+        .mobile-menu a:hover { color: var(--primary); background: var(--badge-bg); }
+        .mobile-menu.active { display: flex; }
+
+        /* ================= HERO SECTION ================= */
+        .hero { position: relative; display: flex; justify-content: space-between; align-items: center; padding: 80px 5%; max-width: 1400px; margin: 0 auto; min-height: 85vh; }
+        
+        .hero-text { width: 40%; max-width: 450px; z-index: 3; }
+        .badge { background: var(--badge-bg); color: var(--primary); padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 20px; }
+        .hero h1 { font-size: 52px; line-height: 1.1; margin-bottom: 20px; font-weight: 800; }
+        .hero h1 span { color: var(--primary); }
+        .hero p { font-size: 17px; color: var(--text-sub); margin-bottom: 30px; line-height: 1.6; }
+        .feature-list li { margin-bottom: 12px; font-size: 16px; display: flex; align-items: center; gap: 12px; font-weight: 500; }
+        .feature-list i { color: var(--primary); font-size: 16px; background: var(--badge-bg); border-radius: 50%; padding: 4px; }
+        .hero-buttons { display: flex; gap: 15px; align-items: center; margin-top: 35px; flex-wrap: wrap; }
+        .hero-buttons .play-btn { color: var(--text-main); font-weight: 600; display: flex; align-items: center; gap: 10px; font-size: 15px; }
+        .hero-buttons .play-btn i { font-size: 36px; color: var(--primary); }
+
+        /* Fixed Instructor Image */
+        .hero-image-container { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 40%; height: 90%; z-index: 2; display: flex; justify-content: center; align-items: flex-end; pointer-events: none; }
+        .hero-image-container img { height: 100%; width: auto; max-width: 100%; object-fit: contain; object-position: bottom; }
+        .hero-image-container::before { content: ''; position: absolute; width: 350px; height: 350px; background-image: radial-gradient(var(--border-color) 2px, transparent 2px); background-size: 20px 20px; top: 15%; left: 50%; transform: translateX(-50%); z-index: -1; border-radius: 50%; }
+
+        /* Right Form */
+        .hero-form { width: 38%; max-width: 450px; background: var(--bg-card); padding: 40px 35px; border-radius: 12px; box-shadow: var(--shadow-light); border: 1px solid var(--border-color); z-index: 3; pointer-events: auto; }
+        .hero-form h3 { font-size: 24px; margin-bottom: 8px; font-weight: 800; }
+        .hero-form p { color: var(--text-sub); font-size: 15px; margin-bottom: 25px; }
+        
+        .input-group { position: relative; margin-bottom: 16px; }
+        .input-group i { position: absolute; left: 16px; top: 16px; color: #a0a0a0; font-size: 14px; }
+        body.dark-theme .input-group i { color: var(--primary); opacity: 0.8; }
+        .form-control { width: 100%; padding: 14px 14px 14px 45px; border: 1px solid var(--border-color); background: var(--input-bg); border-radius: 6px; font-size: 14px; outline: none; color: var(--text-main); }
+        .form-control:focus { border-color: var(--primary); }
+        textarea.form-control { padding-left: 16px; min-height: 90px; resize: vertical; }
+        .input-group.no-icon .form-control { padding-left: 16px; }
+        .secure-text { text-align: center; font-size: 13px; color: var(--text-sub); margin-top: 15px; }
+
+        /* ================= 4 STEPS ================= */
+        .steps-section { padding: 80px 5%; text-align: center; background: var(--bg-card); border-top: 1px solid var(--border-color); }
+        .section-title { font-size: 32px; margin-bottom: 60px; font-weight: 800; }
+        .section-title span { color: var(--primary); }
+        .steps-container { display: flex; justify-content: space-between; position: relative; max-width: 1000px; margin: 0 auto; flex-wrap: wrap; gap: 20px; }
+        .connector { position: absolute; top: 40px; left: 10%; right: 10%; border-top: 2px dashed var(--border-color); z-index: 0; }
+        .step-box { position: relative; z-index: 1; flex: 1; min-width: 180px; display: flex; flex-direction: column; align-items: center; background: var(--bg-card); padding: 0 10px; }
+        .step-circle { width: 80px; height: 80px; background: var(--badge-bg); color: var(--primary); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 28px; margin-bottom: 20px; box-shadow: 0 0 0 10px var(--bg-card); }
+        .step-box h4 { font-size: 18px; margin-bottom: 10px; font-weight: 700; }
+        .step-box p { font-size: 14px; color: var(--text-sub); line-height: 1.5; }
+    
+          
+    
+    /* FORM KE NICHE KA GAP FIX KARNE KE LIYE */
+#applyForm {
+    margin-bottom: 50px; /* Form aur niche wale section ke beech gap */
+}
+
+/* STEPS SECTION KI ALIGNMENT FIX */
+.steps-section {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    margin-top: 20px; /* Taaki form se chipke nahi */
+}
+
+/* MOBILE SCREEN KE LIYE FIX */
+@media(max-width: 991px) {
+    .hero-form {
+        margin-bottom: 40px; /* Mobile par gap */
+    }
+    .steps-section {
+        padding-top: 30px;
+    }
+}
+
+    
+            
+    
+    
+    
+
+        /* ================= BENEFITS ================= */
+        .benefits-section { padding: 80px 5%; text-align: center; background: var(--bg-main); }
+        .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; margin-top: 50px; max-width: 1200px; margin-left: auto; margin-right: auto; }
+        .benefit-card { background: var(--bg-card); border: 1px solid var(--border-color); padding: 40px 25px; border-radius: 12px; box-shadow: var(--shadow-light); }
+        .benefit-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+        .benefit-card i { font-size: 45px; color: var(--primary); margin-bottom: 20px; display: block; }
+        .benefit-card h4 { font-size: 20px; margin-bottom: 12px; font-weight: 700; }
+        .benefit-card p { font-size: 15px; color: var(--text-sub); line-height: 1.6; }
+
+        /* ================= TESTIMONIALS ================= */
+        .testimonials-section { padding: 80px 5%; text-align: center; background: var(--bg-card); border-top: 1px solid var(--border-color); }
+        .testi-grid { display: flex; gap: 20px; max-width: 1200px; margin: 50px auto 0; overflow-x: auto; padding-bottom: 20px; scroll-snap-type: x mandatory; scrollbar-width: none; }
+        .testi-grid::-webkit-scrollbar { display: none; }
+        .testi-card { flex: 0 0 calc(33.333% - 14px); min-width: 300px; background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 30px; text-align: left; scroll-snap-align: start; }
+        .testi-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+        .testi-header img { width: 55px; height: 55px; border-radius: 50%; object-fit: cover; }
+        .testi-info h4 { font-size: 17px; font-weight: 700; }
+        .testi-info span { font-size: 13px; color: var(--text-sub); }
+        .stars { color: #f59e0b; font-size: 13px; margin-top: 5px; }
+        .testi-card p { font-size: 15px; color: var(--text-sub); line-height: 1.6; font-style: italic; }
+
+        /* ================= CTA BANNER ================= */
+        .cta-banner { max-width: 1200px; margin: 80px auto; background: linear-gradient(135deg, var(--primary), #7562e0); border-radius: 16px; padding: 50px 60px; display: flex; justify-content: space-between; align-items: center; color: white; flex-wrap: wrap; gap: 30px; }
+        body.dark-theme .cta-banner { background: linear-gradient(135deg, #111412, #1a291e); border: 1px solid var(--primary); color: var(--text-main); }
+        .cta-content { display: flex; align-items: center; gap: 25px; }
+        .cta-icon { background: rgba(255,255,255,0.2); width: 70px; height: 70px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 32px; }
+        body.dark-theme .cta-icon { background: var(--badge-bg); color: var(--primary); }
+        .cta-text h2 { font-size: 28px; margin-bottom: 8px; font-weight: 700; }
+        .cta-text p { font-size: 16px; opacity: 0.9; }
+        .btn-light { background: white; color: var(--primary); font-weight: 700; padding: 16px 35px; border-radius: 8px; font-size: 16px; }
+        body.dark-theme .btn-light { background: var(--primary); color: #000; }
+
+        /* ================= FOOTER ================= */
+        .footer { background: var(--footer-bg); color: #fff; padding: 80px 5% 30px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1300px; margin: 0 auto 50px; }
+        .footer-logo { font-size: 28px; font-weight: 800; display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+        .footer-logo i { color: var(--primary); }
+        .footer-desc { color: var(--footer-text); font-size: 15px; margin-bottom: 25px; line-height: 1.6; }
+        .social-icons a { color: white; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); width: 40px; height: 40px; display: inline-flex; justify-content: center; align-items: center; border-radius: 50%; margin-right: 10px; transition: 0.3s; }
+        .social-icons a:hover { background: var(--primary); border-color: var(--primary); color: #000; }
+        .footer-links h4 { margin-bottom: 25px; font-size: 18px; color: #fff; }
+        .footer-links ul li { margin-bottom: 15px; }
+        .footer-links ul li a { color: var(--footer-text); font-size: 15px; transition: 0.3s; }
+        .footer-links ul li a:hover { color: white; padding-left: 5px; }
+        .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 25px; font-size: 14px; color: var(--footer-text); }
+
+        /* ================= EDUPOINT MODALS ================= */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); justify-content: center; align-items: center; z-index: 10000; backdrop-filter: blur(5px); padding: 20px; }
+        .auth-box { background: #111412; border: 1px solid #1b3a24; border-radius: 12px; padding: 35px 30px; width: 100%; max-width: 400px; position: relative; box-shadow: 0 10px 40px rgba(0, 255, 102, 0.1); }
+        .auth-title { color: #00ff66; font-size: 24px; font-weight: bold; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #1b3a24; padding-bottom: 15px; margin-bottom: 25px; }
+        .auth-fields input { width: 100%; background: #1a1f1b; border: 1px solid #2b4d36; color: white; padding: 14px 15px; border-radius: 6px; margin-bottom: 15px; font-size: 15px; outline: none; transition: 0.3s; }
+        .auth-fields input:focus { border-color: #00ff66; box-shadow: 0 0 5px rgba(0, 255, 102, 0.2); }
+        .auth-btn { background: #00ff66; color: #000; font-weight: bold; width: 100%; padding: 14px; border: none; border-radius: 6px; font-size: 16px; cursor: pointer; margin-top: 10px; transition: 0.3s; }
+        .auth-btn:hover { background: #00cc52; box-shadow: 0 4px 15px rgba(0,255,102,0.3); }
+        .auth-footer { text-align: center; margin-top: 25px; }
+        .auth-footer a { color: #00ff66; cursor: pointer; font-weight: bold; font-size: 15px; }
+        .close-btn { position: absolute; top: 15px; right: 20px; font-size: 28px; color: #00ff66; cursor: pointer; }
+
+        /* ================= 📱 STRICT MOBILE RESPONSIVENESS (PERFECTED) 📱 ================= */
+        @media(max-width: 991px) {
+            /* Mobile Navbar Fix */
+            .navbar { padding: 15px; flex-wrap: wrap; }
+            .nav-links { display: none; } /* Hidden by default, shown in mobile menu */
+            .hamburger { display: block; }
+            
+            /* Buttons layout on mobile */
+            .nav-actions { margin-left: auto; display: flex; gap: 10px; }
+            .nav-actions .btn { padding: 8px 12px; font-size: 13px; }
+
+            /* Mobile Hero Layout: Text -> Image -> Form */
+            .hero { flex-direction: column; padding: 40px 5%; height: auto; min-height: auto; text-align: center; gap: 0; }
+            
+            .hero-text { width: 100%; order: 1; max-width: 100%; margin-bottom: 30px; }
+            .feature-list { display: inline-block; text-align: left; }
+            .hero-buttons { justify-content: center; margin-bottom: 20px; }
+            
+            /* Image properly scaled for mobile */
+            .hero-image-container { position: relative; order: 2; width: 100%; height: 280px; transform: none; left: 0; margin-bottom: 20px; z-index: 1; pointer-events: none; }
+            .hero-image-container::before { width: 250px; height: 250px; top: 10%; }
+            
+            /* Form perfectly sized with shadow */
+            .hero-form { order: 3; width: 100%; max-width: 100%; z-index: 3; padding: 30px 20px; box-shadow: var(--shadow-light); margin-bottom: 20px; }
+
+            /* Steps & Benefits Mobile Adjustments */
+            .connector { display: none; }
+            .steps-container { flex-direction: column; gap: 40px; }
+            
+            /* CTA Mobile */
+            .cta-banner { flex-direction: column; text-align: center; padding: 40px 20px; border-radius: 12px; }
+            .cta-content { flex-direction: column; gap: 15px; }
+        }
+    </style>
+</head>
+<body class="dark-theme">
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="home.html" class="logo">
+            <i class="fa fa-layer-group"></i> CodeNix
+        </a>
+        
+        <!-- Desktop Nav Links -->
+        <div class="nav-links">
+            <a href="home.html">Home</a>
+            <a href="courses.html">Courses</a>
+            <a href="#">Categories</a>
+            <a href="about.html">About Us</a>
+            <a href="contect.html">Contact</a>
+        </div>
+        
+        <!-- Right Actions -->
+        <div class="nav-actions">
+            <!-- Theme Toggle -->
+            <div class="toggle-switch" onclick="toggleDarkMode()"></div>
+            <button class="btn btn-outline" onclick="openModal('loginModal')">Log In</button>
+            <button class="btn btn-primary" onclick="openModal('registerModal')">Sign Up</button>
+            
+            <!-- Mobile Hamburger Menu Button -->
+            <div class="hamburger" onclick="toggleMobileMenu()"><i class="fa fa-bars"></i></div>
+        </div>
+        
+        <!-- Mobile Dropdown Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="home.html"><i class="fa fa-home"></i> Home</a>
+            <a href="courses.html"><i class="fa fa-graduation-cap"></i> Courses</a>
+            <a href="#"><i class="fa fa-list"></i> Categories</a>
+            <a href="about.html"><i class="fa fa-info-circle"></i> About Us</a>
+            <a href="contect.html"><i class="fa fa-phone"></i> Contact</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        
+        <!-- 1. Text Content -->
+        <div class="hero-text">
+            <span class="badge"><i class="fa fa-check-circle"></i> Teach. Inspire. Earn.</span>
+            <h1>Become an <br><span>Instructor</span></h1>
+            <p>Share your knowledge, help millions of learners and build your online presence with CodeNix.</p>
+            
+            <ul class="feature-list">
+                <li><i class="fa fa-check"></i> Create and publish your courses</li>
+                <li><i class="fa fa-check"></i> Reach a global audience</li>
+                <li><i class="fa fa-check"></i> Earn and grow with every course</li>
+            </ul>
+
+            <div class="hero-buttons">
+                <a href="#applyForm" class="btn btn-primary">Start Teaching Today</a>
+                <a href="#" class="play-btn"><i class="fa fa-play-circle"></i> Watch How It Works</a>
+            </div>
+        </div>
+
+        <!-- 2. Instructor Image (Perfect Cutout) -->
+        <div class="hero-image-container">
+            <!-- Working transparent cutout placeholder -->
+            <img src="https://cdni.iconscout.com/illustration/premium/thumb/online-teacher-4537158-3783850.png" alt="Instructor Cutout">
+        </div>
+
+        <!-- 3. Application Form -->
+        <div class="hero-form" id="applyForm">
+            <h3>Apply to Become an Instructor</h3>
+            <p>Fill the form and start your journey today</p>
+            
+            <div class="input-group">
+                <i class="fa fa-user"></i>
+                <input type="text" id="insName" class="form-control" placeholder="Full Name">
+            </div>
+            <div class="input-group">
+                <i class="fa fa-envelope"></i>
+                <input type="email" id="insEmail" class="form-control" placeholder="Email Address">
+            </div>
+            <div class="input-group">
+                <i class="fa fa-phone"></i>
+                <input type="tel" id="insPhone" class="form-control" placeholder="Phone Number">
+            </div>
+            <div class="input-group">
+                <i class="fa fa-graduation-cap"></i>
+                <input type="text" id="insSubject" class="form-control" placeholder="Expertise / Subject">
+            </div>
+            <div class="input-group no-icon">
+                <textarea id="insBio" class="form-control" placeholder="Tell us about yourself"></textarea>
+            </div>
+            
+            <button class="btn btn-primary" style="width:100%; padding: 16px; font-size: 16px;" onclick="submitInstructorApplication()">Submit Application</button>
+            <div class="secure-text"><i class="fa fa-lock"></i> Your information is safe with us.</div>
+        </div>
+    </section>
+
+    <!-- 4 STEPS -->
+    <section class="steps-section">
+        <h2 class="section-title">Become an Instructor in <span>4 Easy Steps</span></h2>
+        <div class="steps-container">
+            <div class="connector"></div>
+            <div class="step-box">
+                <div class="step-circle"><i class="fa fa-user-plus"></i></div>
+                <h4>1. Sign Up</h4>
+                <p>Create your instructor account for free.</p>
+            </div>
+            <div class="step-box">
+                <div class="step-circle"><i class="fa fa-file-alt"></i></div>
+                <h4>2. Apply</h4>
+                <p>Fill out the application form and tell us about your expertise.</p>
+            </div>
+            <div class="step-box">
+                <div class="step-circle"><i class="fa fa-check-circle"></i></div>
+                <h4>3. Get Approved</h4>
+                <p>Our team will review your application and approve your profile.</p>
+            </div>
+            <div class="step-box">
+                <div class="step-circle"><i class="fa fa-cloud-upload-alt"></i></div>
+                <h4>4. Create & Publish</h4>
+                <p>Create your course and start teaching to thousands of learners.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BENEFITS -->
+    <section class="benefits-section">
+        <h2 class="section-title">Why Teach on <span>CodeNix?</span></h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <i class="fa fa-users"></i>
+                <h4>Huge Learner Base</h4>
+                <p>Access millions of active learners from around the world.</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fa fa-dollar-sign"></i>
+                <h4>Earn More</h4>
+                <p>Set your price and earn up to 90% on every course sale.</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fa fa-chart-bar"></i>
+                <h4>Grow Your Brand</h4>
+                <p>Build your profile and become a trusted instructor.</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fa fa-headset"></i>
+                <h4>Dedicated Support</h4>
+                <p>Get help at every step from our instructor support team.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials-section">
+        <h2 class="section-title">What Our <span>Instructors Say</span></h2>
+        <div class="testi-grid">
+            <div class="testi-card">
+                <div class="testi-header">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Aman">
+                    <div class="testi-info">
+                        <h4>Aman Verma</h4>
+                        <span>Web Developer</span>
+                        <div class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+                    </div>
+                </div>
+                <p>"CodeNix gave me the platform I needed to share my knowledge and now I teach thousands of students."</p>
+            </div>
+            <div class="testi-card">
+                <div class="testi-header">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Neha">
+                    <div class="testi-info">
+                        <h4>Neha Singh</h4>
+                        <span>App Developer</span>
+                        <div class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+                    </div>
+                </div>
+                <p>"The team is super supportive and the earning potential is amazing!"</p>
+            </div>
+            <div class="testi-card">
+                <div class="testi-header">
+                    <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="Rohit">
+                    <div class="testi-info">
+                        <h4>Rohit Patel</h4>
+                        <span>Data Scientist</span>
+                        <div class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+                    </div>
+                </div>
+                <p>"I love how easy it is to create and publish courses on CodeNix."</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA BANNER -->
+    <div class="cta-banner">
+        <div class="cta-content">
+            <div class="cta-icon"><i class="fa fa-rocket"></i></div>
+            <div class="cta-text">
+                <h2>Ready to Inspire the Next Generation of Learners?</h2>
+                <p>Join thousands of successful instructors on CodeNix today.</p>
+            </div>
+        </div>
+        <a href="#applyForm" class="btn btn-light">Start Teaching Now</a>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo"><i class="fa fa-layer-group"></i> CodeNix</div>
+                <p class="footer-desc">Empowering learners and instructors worldwide with quality education.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>For Learners</h4>
+                <ul>
+                    <li><a href="#">All Courses</a></li>
+                    <li><a href="#">Categories</a></li>
+                    <li><a href="#">Free Courses</a></li>
+                    <li><a href="#" onclick="openModal('loginModal')">Student Login</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>For Instructors</h4>
+                <ul>
+                    <li><a href="#">Become an Instructor</a></li>
+                    <li><a href="#">Instructor Guide</a></li>
+                    <li><a href="#">Teaching Resources</a></li>
+                    <li><a href="#">Community</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contect.html">Contact Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#">Refund Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 CodeNix. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- ================= EDUPOINT LOGIN & REGISTER MODALS ================= -->
+    <div class="modal" id="registerModal">
+        <div class="auth-box">
+            <span class="close-btn" onclick="closeModal('registerModal')">&times;</span>
+            <h2 class="auth-title"><i class="fa fa-user-plus"></i> Register</h2>
+            
+            <div class="auth-fields">
+                <input type="text" id="regName" placeholder="User Name">
+                <input type="tel" id="regMobile" placeholder="Mobile Number">
+                <input type="email" id="regEmail" placeholder="Email">
+                <input type="password" id="regPassword" placeholder="Password">
+                <input type="password" id="regConfirm" placeholder="Confirm Password">
+            </div>
+            
+            <button class="auth-btn" onclick="registerUser()">Create Account</button>
+            <div class="auth-footer">
+                <a onclick="switchModal('registerModal', 'loginModal')"><i class="fa fa-arrow-left"></i> Back to Login</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="loginModal">
+        <div class="auth-box">
+            <span class="close-btn" onclick="closeModal('loginModal')">&times;</span>
+            <h2 class="auth-title"><i class="fa fa-sign-in-alt"></i> Login</h2>
+            
+            <div class="auth-fields">
+                <input type="email" id="loginEmail" placeholder="Email">
+                <input type="password" id="loginPassword" placeholder="Password">
+            </div>
+            
+            <button class="auth-btn" onclick="loginUser()">Log In</button>
+            <div class="auth-footer">
+                <a onclick="switchModal('loginModal', 'registerModal')">Create New Account <i class="fa fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= SCRIPTS ================= -->
+    <script>
+        // Dark Mode Logic
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-theme');
+            if (document.body.classList.contains('dark-theme')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        }
+        if(localStorage.getItem('theme') === 'light') { document.body.classList.remove('dark-theme'); }
+
+        // Mobile Menu Logic (HAMBURGER)
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+
+        // Modal Controls
+        function openModal(id) { document.getElementById(id).style.display = 'flex'; }
+        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+        function switchModal(closeId, openId) { closeModal(closeId); openModal(openId); }
+    </script>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCI6rxI61-io2zEpjkYllhHREFpcLK2ZEg",
+            authDomain: "student-profile-f06ce.firebaseapp.com",
+            databaseURL: "https://student-profile-f06ce-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "student-profile-f06ce",
+            storageBucket: "student-profile-f06ce.appspot.com",
+            messagingSenderId: "453142014057",
+            appId: "1:453142014057:web:cfc121b858c66f7c70daf8"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const auth = getAuth(app);
+
+        // 1. Instructor Form Submit
+        window.submitInstructorApplication = () => {
+            const name = document.getElementById("insName").value;
+            const email = document.getElementById("insEmail").value;
+            const phone = document.getElementById("insPhone").value;
+            const subject = document.getElementById("insSubject").value;
+            const bio = document.getElementById("insBio").value;
+
+            if(!name || !email || !phone || !subject) {
+                alert("Please fill all required fields!");
+                return;
+            }
+
+            push(ref(db, 'instructorApplications'), {
+                name, email, phone, subject, bio, timestamp: Date.now()
+            }).then(() => {
+                alert("🎉 Application Submitted Successfully! We will contact you soon.");
+                document.getElementById("insName").value = "";
+                document.getElementById("insEmail").value = "";
+                document.getElementById("insPhone").value = "";
+                document.getElementById("insSubject").value = "";
+                document.getElementById("insBio").value = "";
+            }).catch((err) => alert("Error: " + err.message));
+        };
+
+        // 2. Firebase User Login
+        window.loginUser = () => {
+            const email = document.getElementById("loginEmail").value;
+            const pass = document.getElementById("loginPassword").value;
+            if(!email || !pass) { alert("Please enter email and password"); return; }
+
+            signInWithEmailAndPassword(auth, email, pass)
+            .then(() => {
+                alert("Login Successful!");
+                window.location.href = "project4.html"; 
+            })
+            .catch((err) => alert("Login Failed: " + err.message));
+        };
+
+        // 3. Firebase User Register
+        window.registerUser = () => {
+            const name = document.getElementById("regName").value;
+            const mobile = document.getElementById("regMobile").value;
+            const email = document.getElementById("regEmail").value;
+            const pass = document.getElementById("regPassword").value;
+            const confirm = document.getElementById("regConfirm").value;
+
+            if(!name || !mobile || !email || !pass || !confirm) { alert("Please fill all fields"); return; }
+            if(pass !== confirm) { alert("Passwords do not match!"); return; }
+            if(pass.length < 6) { alert("Password must be at least 6 characters"); return; }
+
+            createUserWithEmailAndPassword(auth, email, pass)
+            .then((userCredential) => {
+                const uid = userCredential.user.uid;
+                set(ref(db, 'users/' + uid), {
+                    username: name,
+                    mobile: mobile,
+                    email: email,
+                    timestamp: Date.now()
+                }).then(() => {
+                    alert("Account Created Successfully!");
+                    switchModal('registerModal', 'loginModal');
+                });
+            })
+            .catch((err) => alert("Registration Error: " + err.message));
+        };
+    </script>
+</body>
+</html>
