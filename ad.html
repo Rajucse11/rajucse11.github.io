@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raju CSE - Tech Blog & Tutorials</title>
+    <meta name="description" content="Technical blog and tutorials by Raju, a Computer Science Engineering student.">
+    <style>
+        /* Professional CSS Reset & Variables */
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --text-main: #333333;
+            --text-light: #666666;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --border-color: #e2e8f0;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: var(--bg-light); color: var(--text-main); line-height: 1.6; }
+        
+        /* Typography */
+        h1, h2, h3 { color: #111827; margin-bottom: 15px; }
+        p { margin-bottom: 15px; color: var(--text-light); }
+        a { color: var(--primary-color); text-decoration: none; transition: color 0.3s ease; }
+        a:hover { color: var(--secondary-color); text-decoration: underline; }
+
+        /* Header & Navigation */
+        header { background-color: var(--bg-white); box-shadow: 0 2px 4px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
+        nav { max-width: 1200px; margin: 0 auto; padding: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 24px; font-weight: bold; color: var(--primary-color); }
+        .nav-links { list-style: none; display: flex; gap: 20px; }
+        .nav-links li a { font-weight: 500; color: #475569; }
+        .nav-links li a:hover { color: var(--primary-color); }
+
+        /* Main Container */
+        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; display: grid; grid-template-columns: 2fr 1fr; gap: 40px; }
+        
+        /* Content Sections */
+        .card { background: var(--bg-white); padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); margin-bottom: 30px; border: 1px solid var(--border-color); }
+        .card-title { font-size: 22px; margin-bottom: 10px; border-bottom: 2px solid var(--bg-light); padding-bottom: 10px; }
+        
+        /* Forms */
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 500; }
+        .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 4px; font-size: 16px; }
+        .btn-submit { background-color: var(--primary-color); color: white; padding: 12px 24px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; font-weight: bold; }
+        .btn-submit:hover { background-color: var(--secondary-color); }
+
+        /* Footer */
+        footer { background-color: #1e293b; color: #f8fafc; text-align: center; padding: 30px 20px; margin-top: 50px; }
+        footer p { color: #cbd5e1; margin-bottom: 5px; }
+        footer a { color: #93c5fd; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; }
+            nav { flex-direction: column; gap: 15px; }
+        }
+
+        /* Section Visibility Toggle for Single Page App feel */
+        .content-section { display: none; }
+        .content-section.active { display: block; }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">Raju CSE</div>
+            <ul class="nav-links">
+                <li><a href="home" onclick="showSection('home')">Home</a></li>
+                <li><a href="about" onclick="showSection('about')">About Us</a></li>
+                <li><a href="privacy" onclick="showSection('privacy')">Privacy Policy</a></li>
+                <li><a href="#" onclick="showSection('disclaimer')">Disclaimer</a></li>
+                <li><a href="contact" onclick="showSection('contact')">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        
+        <!-- Main Content Area -->
+        <main>
+            
+            <!-- HOME / BLOG SECTION -->
+            <section id="home" class="content-section active">
+                <div class="card">
+                    <h2 class="card-title">Introduction to Computer Science Engineering</h2>
+                    <p><strong>Published on:</strong> 15 July 2026 | <strong>Category:</strong> Tutorials</p>
+                    <p>Welcome to the first tutorial series on this platform. Computer Science Engineering (CSE) is a foundational discipline that integrates several fields of computer science and electronics engineering required to develop computer hardware and software. As a first-semester student, mastering the basics of algorithms, data structures, and programming logic is critical.</p>
+                    <p>In this post, we will explore the core concepts that every beginner must know. The journey from learning the fundamentals in polytechnic to aiming for a permanent tech career requires dedication, continuous learning, and practical application of theoretical concepts.</p>
+                    <p>Whether you are pursuing a diploma after your 10th grade or preparing for advanced technical roles, building a strong base in programming languages like C, C++, or Python will set you apart in the industry.</p>
+                </div>
+
+                <div class="card">
+                    <h2 class="card-title">The Importance of English in the Tech Industry</h2>
+                    <p><strong>Published on:</strong> 10 July 2026 | <strong>Category:</strong> Career Guidance</p>
+                    <p>In the globalized world of technology, programming languages are not the only languages you need to master. English plays a pivotal role in a developer's career. Most programming syntax, official documentation, developer forums (like StackOverflow), and global tech resources are entirely in English.</p>
+                    <p>Improving English communication skills helps in understanding complex technical documentation easily, collaborating with international teams, and performing well in technical interviews for permanent roles.</p>
+                    <p>Daily reading, watching tech tutorials, and actively participating in coding communities are excellent ways to strengthen both technical and language skills simultaneously.</p>
+                </div>
+            </section>
+
+            <!-- ABOUT US SECTION -->
+            <section id="about" class="content-section">
+                <div class="card">
+                    <h1 class="card-title">About Us</h1>
+                    <p>Welcome to <strong>Raju CSE</strong>! This platform is dedicated to sharing knowledge, tutorials, and insights related to Computer Science Engineering and technology.</p>
+                    <p>I am Raju, a dedicated Computer Science Engineering student currently in my first semester at Bihar Polytechnic. Having completed my 10th-grade education along with ITI training, I have developed a strong passion for understanding how technology works from the ground up.</p>
+                    <p>My goal with this website is to document my learning journey, share educational resources with fellow students, and build a professional portfolio as I prepare for long-term, permanent career opportunities in the tech sector.</p>
+                    <p>Apart from coding and exploring core CS concepts, I am actively focusing on improving my English language skills to better navigate the global tech landscape. I also enjoy staying updated with social media trends and exploring digital content in my free time.</p>
+                    <p>Thank you for visiting, and I hope the content here adds value to your own educational journey.</p>
+                </div>
+            </section>
+
+            <!-- PRIVACY POLICY SECTION -->
+            <section id="privacy" class="content-section">
+                <div class="card">
+                    <h1 class="card-title">Privacy Policy</h1>
+                    <p><em>Last updated: July 15, 2026</em></p>
+                    <p>At <strong>Raju CSE</strong>, accessible from rajucse11.github.io, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Raju CSE and how we use it.</p>
+                    
+                    <h3>Log Files</h3>
+                    <p>Raju CSE follows a standard procedure of using log files. These files log visitors when they visit websites. The information collected by log files include internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks. These are not linked to any information that is personally identifiable.</p>
+                    
+                    <h3>Cookies and Web Beacons</h3>
+                    <p>Like any other website, Raju CSE uses 'cookies'. These cookies are used to store information including visitors' preferences, and the pages on the website that the visitor accessed or visited. The information is used to optimize the users' experience by customizing our web page content based on visitors' browser type and/or other information.</p>
+                    
+                    <h3>Google DoubleClick DART Cookie</h3>
+                    <p>Google is one of a third-party vendor on our site. It also uses cookies, known as DART cookies, to serve ads to our site visitors based upon their visit to our site and other sites on the internet. However, visitors may choose to decline the use of DART cookies by visiting the Google ad and content network Privacy Policy at the following URL: <a href="https://policies.google.com/technologies/ads" target="_blank">https://policies.google.com/technologies/ads</a></p>
+                    
+                    <h3>Consent</h3>
+                    <p>By using our website, you hereby consent to our Privacy Policy and agree to its Terms and Conditions.</p>
+                </div>
+            </section>
+
+            <!-- DISCLAIMER SECTION -->
+            <section id="disclaimer" class="content-section">
+                <div class="card">
+                    <h1 class="card-title">Disclaimer</h1>
+                    <p>The information provided by <strong>Raju CSE</strong> on rajucse11.github.io is for general informational and educational purposes only. All information on the Site is provided in good faith, however, we make no representation or warranty of any kind, express or implied, regarding the accuracy, adequacy, validity, reliability, availability, or completeness of any information on the Site.</p>
+                    <p>Under no circumstance shall we have any liability to you for any loss or damage of any kind incurred as a result of the use of the site or reliance on any information provided on the site. Your use of the site and your reliance on any information on the site is solely at your own risk.</p>
+                    <p>This site may contain links to other websites or content belonging to or originating from third parties. Such external links are not investigated, monitored, or checked for accuracy, adequacy, validity, reliability, availability, or completeness by us.</p>
+                </div>
+            </section>
+
+            <!-- CONTACT SECTION -->
+            <section id="contact" class="content-section">
+                <div class="card">
+                    <h1 class="card-title">Contact Us</h1>
+                    <p>If you have any questions, suggestions, or just want to say hello, feel free to reach out using the form below. I will try to get back to you as soon as possible.</p>
+                    
+                    <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Message Sent Successfully!');">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" placeholder="What is this regarding?">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="6" placeholder="Write your message here..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">Send Message</button>
+                    </form>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Sidebar -->
+        <aside>
+            <div class="card">
+                <h3 class="card-title">About the Author</h3>
+                <p>Hi, I'm Raju! I'm an engineering student passionate about computer science, programming, and continuous learning. Welcome to my digital space.</p>
+            </div>
+            <div class="card">
+                <h3 class="card-title">Categories</h3>
+                <ul style="list-style-type: none; padding-left: 0;">
+                    <li style="margin-bottom: 10px;"><a href="#">Computer Science </a></li>
+                    <li style="margin-bottom: 10px;"><a href="#">Programming Basics </a></li>
+                    <li style="margin-bottom: 10px;"><a href="#">Career Guide </a></li>
+                </ul>
+            </div>
+        </aside>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Raju CSE. All Rights Reserved.</p>
+        <p>
+            <a href="privacy" onclick="showSection('privacy')">Privacy Policy</a> | 
+            <a href="" onclick="showSection('disclaimer')">Disclaimer</a> | 
+            <a href="contact" onclick="showSection('contact')">Contact Us</a>
+        </p>
+    </footer>
+
+    <!-- JavaScript for single-page navigation -->
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(function(section) {
+                section.classList.remove('active');
+            });
+            // Show the selected section
+            document.getElementById(sectionId).classList.add('active');
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
