@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raju CSE - Latest Jobs & Updates</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        /* Header */
+        header {
+            background-color: #0066ff;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+        .logo-title {
+            font-size: 28px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .subtitle {
+            font-size: 14px;
+            margin-top: 5px;
+            color: #ffeb3b;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: #e60000;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        nav a {
+            color: white;
+            padding: 10px 15px;
+            font-size: 14px;
+            font-weight: bold;
+            border-right: 1px solid #ff4d4d;
+        }
+        nav a:hover {
+            background-color: #cc0000;
+        }
+
+        /* Search Bar */
+        .search-container {
+            background-color: #e0e0e0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .search-box {
+            display: flex;
+            width: 100%;
+            max-width: 800px;
+        }
+        .search-box input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px 0 0 4px;
+            outline: none;
+        }
+        .search-box button {
+            background-color: #0066ff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 0 4px 4px 0;
+            font-weight: bold;
+        }
+
+        /* Social Buttons */
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px;
+            flex-wrap: wrap;
+            background-color: white;
+        }
+        .btn {
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+        }
+        .btn-yt { background-color: #ff0000; }
+        .btn-wa { background-color: #25D366; }
+        .btn-tg { background-color: #0088cc; }
+
+        /* Highlight Grid */
+        .highlight-container {
+            max-width: 1200px;
+            margin: 0 auto 20px auto;
+            padding: 0 10px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+        .highlight-box {
+            background-color: #0066ff;
+            color: white;
+            text-align: center;
+            padding: 15px 10px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 4px;
+            border: 2px solid #005ce6;
+        }
+        .highlight-box:hover {
+            background-color: #005ce6;
+        }
+
+        /* Main Grid (3 Columns) */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 10px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .section-card {
+            background-color: white;
+            border: 1px solid #0066ff;
+            border-radius: 4px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .section-header {
+            background-color: #0066ff;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .section-list {
+            list-style: none;
+            flex: 1;
+        }
+        .section-list li {
+            border-bottom: 1px solid #eee;
+        }
+        .section-list li a {
+            display: block;
+            padding: 10px 15px;
+            font-size: 14px;
+            color: #000;
+            line-height: 1.4;
+        }
+        .section-list li a:hover {
+            color: #0066ff;
+            text-decoration: underline;
+        }
+        .view-more {
+            background-color: #0066ff;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            display: block;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .view-more:hover {
+            background-color: #005ce6;
+        }
+
+        /* Disclaimer Section */
+        .disclaimer-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-top: 2px solid #eee;
+        }
+        .disclaimer-container h2 {
+            color: #c62828;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        .disclaimer-text-red {
+            color: #c62828;
+            margin-bottom: 15px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .know-more-box {
+            background-color: #e8eaf6;
+            border-radius: 4px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        .know-more-header {
+            padding: 12px 20px;
+            font-weight: bold;
+            border-bottom: 1px solid #fff;
+            color: #333;
+        }
+        .know-more-list {
+            list-style: none;
+            background-color: #fff;
+        }
+        .know-more-list li {
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .know-more-list li a {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 20px;
+            color: #555;
+            font-size: 14px;
+        }
+        .know-more-list li a:hover {
+            background-color: #f9f9f9;
+        }
+
+        .disclaimer-subheading {
+            background-color: #f5f5f5;
+            padding: 10px;
+            font-weight: bold;
+            margin: 20px 0 10px 0;
+            font-size: 16px;
+            border-left: 4px solid #ccc;
+        }
+        .disclaimer-ul {
+            padding-left: 20px;
+            font-size: 13px;
+            line-height: 1.7;
+            color: #444;
+            margin-bottom: 20px;
+        }
+        .disclaimer-ul li {
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        .site-footer {
+            background-color: #eaeaea;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            font-size: 14px;
+            color: #333;
+            border-top: 1px solid #ccc;
+        }
+        .footer-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        .copyright {
+            margin-top: 10px;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .logo-title { font-size: 22px; }
+            nav a { padding: 8px 10px; font-size: 12px; }
+            .highlight-container { grid-template-columns: repeat(2, 1fr); }
+            .main-content { grid-template-columns: 1fr; }
+            .site-footer { flex-direction: column; text-align: center; gap: 15px; }
+            .footer-links { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo-title">
+            <span style="background: white; color: #e60000; padding: 2px 5px; border-radius: 4px; font-size: 20px;">RC</span>
+            Raju CSE Portal
+        </div>
+        <div class="subtitle">Tech, Engineering & Permanent Job Updates</div>
+    </header>
+
+    <!-- Navbar -->
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Latest Jobs</a>
+        <a href="#">Admit Card</a>
+        <a href="#">Results</a>
+        <a href="#">University Update</a>
+        <a href="#">Sarkari Yojana</a>
+        <a href="#">Scholarship</a>
+    </nav>
+
+    <!-- Search Bar with working JS -->
+    <div class="search-container">
+        <div class="search-box">
+            <input type="text" id="searchInput" onkeyup="searchContent()" placeholder="Search jobs, results, updates etc...">
+            <button onclick="searchContent()">🔍</button>
+        </div>
+    </div>
+
+    <!-- Social Buttons -->
+    <div class="social-buttons">
+        <a href="#" class="btn btn-yt">▶ Our YouTube Channel</a>
+        <a href="#" class="btn btn-wa">💬 Join Whatsapp Channel</a>
+        <a href="#" class="btn btn-tg">✈ Join Us On Telegram</a>
+    </div>
+
+    <!-- Highlight Links -->
+    <div class="highlight-container">
+        <a href="#" class="highlight-box">Bihar Polytechnic 1st Semester Syllabus</a>
+        <a href="#" class="highlight-box">Permanent Tech Jobs 2026</a>
+        <a href="#" class="highlight-box">10th + ITI Recruitment 2026</a>
+        <a href="#" class="highlight-box">English Communication for CSE Students</a>
+        <a href="#" class="highlight-box">Bihar Post Matric Scholarship 2026</a>
+        <a href="#" class="highlight-box">Tech Companies Hiring 2026</a>
+        <a href="#" class="highlight-box">Computer Science Free Resources</a>
+        <a href="#" class="highlight-box">Bihar Board 10th Pass Scholarship</a>
+    </div>
+
+    <!-- Main Content Layout -->
+    <div class="main-content">
+        
+        <!-- Latest Update -->
+        <div class="section-card">
+            <div class="section-header">Latest Update</div>
+            <ul class="section-list">
+                <li><a href="#">Bihar Polytechnic Counselling 2026 Registration Process & Schedule</a></li>
+                <li><a href="#">CSE 1st Semester Question Bank Download (All Subjects)</a></li>
+                <li><a href="#">Learn Basic English for Coding - 30 Days Free Plan</a></li>
+                <li><a href="#">RRB Technician Vacancy 2026 - Permanent Notification Out</a></li>
+                <li><a href="#">Top 5 Government Job Vacancies for ITI Holders in 2026</a></li>
+            </ul>
+            <a href="#" class="view-more">View More...</a>
+        </div>
+
+        <!-- Latest Jobs -->
+        <div class="section-card">
+            <div class="section-header">Latest Jobs</div>
+            <ul class="section-list">
+                <li><a href="#">Junior Software Engineer Permanent Vacancy 2026 - Apply Online</a></li>
+                <li><a href="#">Railway ITI Permanent Recruitment 2026 For 4500 Posts</a></li>
+                <li><a href="#">Bihar Police Sub Inspector Vacancy 2026 Online Apply</a></li>
+                <li><a href="#">SSC CHSL 2026 Notification, Eligibility & Selection Process</a></li>
+                <li><a href="#">Data Entry Operator Permanent Job (10th Pass Eligible)</a></li>
+            </ul>
+            <a href="#" class="view-more">View More...</a>
+        </div>
+
+        <!-- Sarkari Yojana -->
+        <div class="section-card">
+            <div class="section-header">Sarkari Yojana</div>
+            <ul class="section-list">
+                <li><a href="#">Bihar Free Laptop Yojana 2026 for Polytechnic Students</a></li>
+                <li><a href="#">Mukhyamantri Udyami Yojana - Get 10 Lakh Loan</a></li>
+                <li><a href="#">Bihar Student Credit Card Scheme for Higher Education</a></li>
+                <li><a href="#">Ayushman Card Online Apply 2026 Full Process</a></li>
+                <li><a href="#">Free Coaching Yojana 2026 for BPSC, SSC & Railway</a></li>
+            </ul>
+            <a href="#" class="view-more">View More...</a>
+        </div>
+
+        <!-- Admit Card -->
+        <div class="section-card">
+            <div class="section-header">Admit Card</div>
+            <ul class="section-list">
+                <li><a href="#">Bihar Polytechnic 1st Semester Exam Admit Card 2026</a></li>
+                <li><a href="#">Railway Group D Admit Card & Exam City Slip</a></li>
+                <li><a href="#">Bihar ITI Exam Admit Card Download Link</a></li>
+                <li><a href="#">SSC GD Constable Admit Card 2026 Released</a></li>
+                <li><a href="#">BPSC Teacher Exam Admit Card 2026</a></li>
+            </ul>
+            <a href="#" class="view-more">View More...</a>
+        </div>
+
+        <!-- Results -->
+        <div class="section-card">
+            <div class="section-header">Results</div>
+            <ul class="section-list">
+                <li><a href="#">Bihar Polytechnic 1st Semester Result 2026 Check Here</a></li>
+                <li><a href="#">Bihar Board 10th Result 2026 Declared - Check Marksheet</a></li>
+                <li><a href="#">RRB Group D Final Merit List 2026</a></li>
+                <li><a href="#">Bihar ITI Result 2026 Link Active</a></li>
+                <li><a href="#">SSC MTS Tier 1 Result & Cutoff 2026</a></li>
+            </ul>
+            <a href="#" class="view-more">View More...</a>
+        </div>
+
+        <!-- Admission -->
+        <div class="section-card">
+            <div class="section-header">Admission</div>
+            <ul class="section-list">
+                <li><a href="#">Bihar Polytechnic Lateral Entry Admission 2026 (ITI to Diploma)</a></li>
+                <li><a href="#">B.Tech Admission in Bihar Engineering Colleges 2026</a></li>
+                <li><a href="#">BCA/BSc IT Admission 2026 Top Colleges in Bihar</a></li>
+                <li><a href="#">Bihar ITI Admission 2026 Form Fill Up Date</a></li>
+                <li><a href="#">NVS Class 6th Admission 2026 Notification</a></li>
+            </ul>
+            <a href="#" class="view-more">View More...</a>
+        </div>
+
+    </div>
+
+    <!-- New Disclaimer Section -->
+    <div class="disclaimer-container">
+        <h2>Disclaimer for rajucse11.github.io</h2>
+        
+        <p class="disclaimer-text-red">प्रिय पाठकगण,</p>
+        <p class="disclaimer-text-red"><strong>rajucse11.github.io</strong> एक सरकारी वेबसाइट नहीं है और इसका किसी सरकारी मंत्रालय या विभाग से कोई संबंध नहीं है।</p>
+        <p class="disclaimer-text-red">यह ब्लॉग एक व्यक्तिगत प्रयास है, जिसे उन लोगों की सहायता के लिए बनाया गया है जो तकनीकी शिक्षा, सरकारी योजनाओं और भर्ती (विशेषकर Permanent Jobs) के बारे में सटीक और अपडेटेड जानकारी प्राप्त करना चाहते हैं। हमारी टीम यह सुनिश्चित करने का प्रयास करती है कि हर लेख में आपको सटीक जानकारी मिले, लेकिन हम त्रुटियों की संभावना से इंकार नहीं कर सकते।</p>
+
+        <!-- Know More Box -->
+        <div class="know-more-box">
+            <div class="know-more-header">ज़्यादा जानें</div>
+            <ul class="know-more-list">
+                <li><a href="#">शिक्षा अनुदान और छात्रवृत्ति <span>&gt;</span></a></li>
+                <li><a href="#">College <span>&gt;</span></a></li>
+                <li><a href="#">Recruitment <span>&gt;</span></a></li>
+            </ul>
+        </div>
+
+        <p class="disclaimer-text-red">हमारे सभी लेखों में संबंधित योजना या भर्ती की <strong>आधिकारिक वेबसाइट</strong> का लिंक दिया गया है, और हम आपसे अनुरोध करते हैं कि आप जानकारी को सत्यापित करने के लिए हमेशा <strong>आधिकारिक वेबसाइट</strong> का संदर्भ लें। यदि आपको किसी लेख में कोई त्रुटि मिले, तो कृपया हमें सूचित करें, ताकि हम उसे सुधार सकें। इस वेबसाइट के माध्यम से कभी भी किसी के द्वारा पैसे की मांग नहीं की जाती है। यह वेबसाइट पूर्णतः निशुल्क सूचना प्रदान करती है, सिर्फ जानकारी आप तक सरल तरीकों से पहुंचे यही हमारा उद्देश्य है, हमारे दिए गए सूचनाओं को एक बार अपने द्वारा जांच परख लें | धन्यवाद</p>
+
+        <div class="disclaimer-subheading">rajucse11.github.io पर प्रदान की जाने वाली जानकारियों का स्रोत / Source क्या है?</div>
+        <ul class="disclaimer-ul">
+            <li>हम, यहां पर अपने सभी पाठकों को बता देना चाहते हैं कि, <strong>rajucse11.github.io</strong> ना केवल एक <strong>जिम्मेदार वेबसाइट है बल्कि rajucse11.github.io पर प्रदान की जाने वाली सभी सूचनायें 100 प्रतिशत शुद्धता के साथ प्रस्तुत की जाती है,</strong></li>
+            <li>आपको बता दें कि, <strong>rajucse11.github.io</strong> पर कोई भी <strong>सूचना या आर्टिकल बिना किसी पुख्ता प्रमाण // Solid Evidence</strong> के प्रस्तुत नहीं की जाती है,</li>
+            <li>जो भी आर्टिकल <strong>rajucse11.github.io</strong> पर जारी किया जाता है उसके <strong>Source</strong> मुख्य तौर पर <strong>संबंधित संस्था या भारत सरकार</strong> के <strong>Official Website, Print Media, Authenticated News Paper Cutting Evidence and Other 100% Reliable Source</strong> से प्रदान किया जाता है और</li>
+            <li>अन्त में, इसीलिए हम, आप सभी को <strong>rajucse11.github.io</strong> पर प्रकाशित किये जाने प्रत्येक आर्टिकल्स के अन्त में, आपको <strong>Quick Links</strong> प्रदान किया जाता है जिसमे हम आपको <strong>Official Source Related Links - Print Media Links, Official Advertisement, Direct Online Application Links</strong> आदि को प्रस्तुत किया जाता है जो कि, पूरी तरह से <strong>शुद्ध व प्रमाणिक / Authenticated</strong> होती है।</li>
+        </ul>
+
+        <div class="disclaimer-subheading">क्या rajucse11.github.io अपनी वेबसाइट पर प्रकाशित की जाने वाली सामग्री / Content की जिम्मेदारी लेता है?</div>
+        <ul class="disclaimer-ul">
+            <li>वैसे तो <strong>rajucse11.github.io</strong> का पूरा प्रयास रहता है कि, अपने हर आर्टिकल या सूचना आपको <strong>100 प्रतिशत शुद्ध व प्रमाणिक</strong> जानकारी प्रदान की जाये और इसीलिए हम वेबसाइट पर <strong>Official Print Media</strong> से प्राप्त जानकारी के आधार पर सूचना को प्रदान करते है,</li>
+            <li>और अपने सभी पाठको से विनम्र अनुरोध करते है कि, आप <strong>rajucse11.github.io</strong> पर दी गई किसी भी जानकारी के संबंध में कोई भी बड़ा कदम उठाने से पहले उस खबरी की अपने स्तर पर <strong>सत्यता / Authentication</strong> की जांच करें क्योंकि</li>
+            <li><strong>rajucse11.github.io</strong> द्वारा किसी भी प्रकार की कोई जिम्मेदार नहीं ली जाती है क्योंकि प्लेटफॉर्म केवल एक <strong>सूचना प्रदाता प्लेटफॉर्म</strong> है जहां पर <strong>जनहित</strong> को ध्यान में रखते हुए <strong>प्रमाणिक</strong> जानकारी प्रदान की जाती है और पाठकों से अनुरोध किया जाता है कि, हर खबर की पहले अपने स्तर पर जांच करे और सब कुछ सही पाये जाने पर ही कोई कदम उठाये।</li>
+        </ul>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-links">
+            <a href="#">Disclaimer</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">About us</a>
+            <a href="#">Contact us</a>
+        </div>
+        <div class="copyright">
+            Copyright &copy; 2026 rajucse11.github.io
+        </div>
+    </footer>
+
+    <!-- Script for Search Functionality -->
+    <script>
+        function searchContent() {
+            // Get input value and convert to lowercase
+            let input = document.getElementById('searchInput');
+            let filter = input.value.toLowerCase();
+            
+            // Get all list items inside the section cards
+            let listItems = document.querySelectorAll('.section-list li');
+            
+            // Loop through all list items, and hide those who don't match the search query
+            listItems.forEach(function(item) {
+                let text = item.textContent || item.innerText;
+                if (text.toLowerCase().indexOf(filter) > -1) {
+                    item.style.display = "";
+                } else {
+                    item.style.display = "none";
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
