@@ -1,114 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Raju | Web Developer</title>
-
-<style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Segoe UI', sans-serif;
-}
-
-/* Background */
-body{
-  background:linear-gradient(135deg,#0d6efd,#6c63ff);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-}
-
-/* Card */
-.card{
-  background:white;
-  padding:40px;
-  text-align:center;
-  border-radius:20px;
-  width:320px;
-  box-shadow:0 10px 25px rgba(0,0,0,0.3);
-}
-
-/* Profile Image */
-.card img{
-  width:120px;
-  height:120px;
-  border-radius:50%;
-  object-fit:cover;
-  border:4px solid #0d6efd;
-}
-
-/* Name */
-.card h1{
-  margin-top:15px;
-  color:#0d6efd;
-}
-
-/* Typing Text */
-.typing{
-  font-size:18px;
-  margin-top:10px;
-  min-height:25px;
-  color:#333;
-}
-
-/* Cursor */
-.cursor{
-  display:inline-block;
-  width:3px;
-  background:#0d6efd;
-  margin-left:5px;
-  animation:blink 0.7s infinite;
-}
-
-@keyframes blink{
-  50%{opacity:0;}
-}
-
-p{
-  margin-top:10px;
-  color:#666;
-  font-size:14px;
-}
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trending Software - Professional Home Page</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
 </head>
+<body class="bg-slate-950 text-white selection:bg-purple-500 selection:text-white">
 
-<body>
+    <!-- Navbar (Glassmorphism) -->
+    <nav class="fixed w-full z-50 bg-slate-950/70 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+                TrendSoft
+            </div>
+            <div class="hidden md:flex space-x-8 text-sm font-medium text-slate-300">
+                <a href="#" class="hover:text-white transition">Features</a>
+                <a href="#" class="hover:text-white transition">How it Works</a>
+                <a href="#" class="hover:text-white transition">Pricing</a>
+            </div>
+            <div>
+                <button class="bg-white/10 hover:bg-white/20 border border-white/10 px-5 py-2 rounded-full text-sm font-semibold transition">
+                    Login
+                </button>
+                <button class="ml-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 px-5 py-2 rounded-full text-sm font-semibold shadow-[0_0_15px_rgba(147,51,234,0.4)] transition">
+                    Get Started
+                </button>
+            </div>
+        </div>
+    </nav>
 
-<div class="card">
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 px-6 max-w-7xl mx-auto text-center">
+        <!-- Background Glow -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-600/20 blur-[120px] rounded-full pointer-events-none"></div>
 
-  <!-- Profile Image (internet link) -->
-  <img src="rs.png" alt="Profile">
+        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 mt-10">
+            Scale Your Work with <br class="hidden md:block" />
+            <span class="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">Next-Gen Software</span>
+        </h1>
+        <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10">
+            Aapka trending platform jo aapke workflow ko 10x fast aur professional banata hai. Join the revolution today.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-16">
+            <button class="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 px-8 py-4 rounded-full text-lg font-semibold shadow-[0_0_20px_rgba(147,51,234,0.5)] transition hover:scale-105">
+                Start for Free
+            </button>
+            <button class="w-full sm:w-auto bg-white/5 hover:bg-white/10 border border-white/10 px-8 py-4 rounded-full text-lg font-semibold transition hover:scale-105">
+                View Demo
+            </button>
+        </div>
 
-  <h1>Raju & Sunny</h1>
+        <!-- Video Placeholder (For Your Professional Animation) -->
+        <div class="relative max-w-5xl mx-auto aspect-video bg-slate-900 rounded-2xl border border-white/10 shadow-2xl overflow-hidden group">
+            <div class="absolute inset-0 flex items-center justify-center text-slate-500">
+                <span class="text-lg">[Aapka Professional Animated Promo Video Yahan Aayega]</span>
+            </div>
+            <!-- Play Button UI overlay -->
+            <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-80 group-hover:opacity-100 transition">
+                <div class="w-16 h-16 bg-white/20 backdrop-blur-lg rounded-full flex items-center justify-center border border-white/30">
+                    <div class="w-0 h-0 border-t-8 border-t-transparent border-l-[16px] border-l-white border-b-8 border-b-transparent ml-1"></div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <div class="typing">
-    <span id="text"></span>
-    <span class="cursor"></span>
-  </div>
+    <!-- Social Proof -->
+    <section class="border-y border-white/5 bg-white/[0.02] py-8">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p class="text-sm font-medium text-slate-400 mb-6 uppercase tracking-widest">Trusted by 5,000+ fast-growing teams</p>
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-50 grayscale">
+                <!-- Brand Logo Placeholders -->
+                <div class="text-xl font-bold">Google</div>
+                <div class="text-xl font-bold">Microsoft</div>
+                <div class="text-xl font-bold">Amazon</div>
+                <div class="text-xl font-bold">Meta</div>
+            </div>
+        </div>
+    </section>
 
-  <p>I build modern responsive websites using HTML, CSS and JavaScript</p>
+    <!-- Features Bento Box Grid -->
+    <section class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-5xl font-bold mb-4">Everything you need, in one place.</h2>
+            <p class="text-slate-400 text-lg">Powerful features packed into a beautiful, easy-to-use interface.</p>
+        </div>
 
-</div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Large Card -->
+            <div class="md:col-span-2 bg-gradient-to-br from-slate-900 to-slate-900/50 p-8 rounded-3xl border border-white/10 hover:border-purple-500/50 transition duration-300">
+                <div class="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center text-blue-400 mb-6 text-2xl">🚀</div>
+                <h3 class="text-2xl font-bold mb-3">Lightning Fast Performance</h3>
+                <p class="text-slate-400">Zero lag, smooth animations, aur quick load times jo aapke users ko ek premium experience dete hain.</p>
+            </div>
+            <!-- Standard Card -->
+            <div class="bg-gradient-to-br from-slate-900 to-slate-900/50 p-8 rounded-3xl border border-white/10 hover:border-cyan-500/50 transition duration-300">
+                <div class="w-12 h-12 bg-cyan-500/20 rounded-xl flex items-center justify-center text-cyan-400 mb-6 text-2xl">🔒</div>
+                <h3 class="text-xl font-bold mb-3">Bank-grade Security</h3>
+                <p class="text-slate-400">Aapka aur aapke users ka data hamesha safe rahega.</p>
+            </div>
+            <!-- Standard Card -->
+            <div class="bg-gradient-to-br from-slate-900 to-slate-900/50 p-8 rounded-3xl border border-white/10 hover:border-pink-500/50 transition duration-300">
+                <div class="w-12 h-12 bg-pink-500/20 rounded-xl flex items-center justify-center text-pink-400 mb-6 text-2xl">🎨</div>
+                <h3 class="text-xl font-bold mb-3">Stunning UI/UX</h3>
+                <p class="text-slate-400">Modern design jo conversions badhane ke liye banaya gaya hai.</p>
+            </div>
+            <!-- Large Card -->
+            <div class="md:col-span-2 bg-gradient-to-br from-slate-900 to-slate-900/50 p-8 rounded-3xl border border-white/10 hover:border-purple-500/50 transition duration-300">
+                <div class="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center text-purple-400 mb-6 text-2xl">⚡</div>
+                <h3 class="text-2xl font-bold mb-3">Seamless Integrations</h3>
+                <p class="text-slate-400">Apne favorite tools ko ek click mein connect karein aur apna workflow automate karein.</p>
+            </div>
+        </div>
+    </section>
 
-<script>
-let text = "I am Web Developer & Web Designer";
-let i = 0;
+    <!-- Final CTA -->
+    <section class="py-20 px-6">
+        <div class="max-w-5xl mx-auto bg-gradient-to-r from-blue-900/40 to-purple-900/40 border border-white/10 rounded-[3rem] p-12 text-center relative overflow-hidden">
+            <div class="absolute inset-0 bg-noise opacity-10"></div>
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">Ready to level up?</h2>
+            <p class="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">Join thousands of professionals scaling their work today.</p>
+            <button class="bg-white text-slate-950 hover:bg-slate-200 px-8 py-4 rounded-full text-lg font-bold shadow-xl transition hover:scale-105">
+                Create Free Account
+            </button>
+        </div>
+    </section>
 
-function typing(){
-  if(i < text.length){
-    document.getElementById("text").innerHTML += text.charAt(i);
-    i++;
-    setTimeout(typing, 120);
-  }
-}
-
-typing();
-</script>
+    <!-- Footer -->
+    <footer class="border-t border-white/10 py-12 px-6 mt-10">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-sm text-slate-500">
+            <div class="mb-4 md:mb-0">
+                <span class="text-xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">TrendSoft</span>
+                <p class="mt-2">© 2026 All rights reserved.</p>
+            </div>
+            <div class="flex space-x-6">
+                <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition">Terms of Service</a>
+                <a href="#" class="hover:text-white transition">Contact Us</a>
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>
