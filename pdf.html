@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
 
         * {
             margin: 0;
@@ -23,8 +23,7 @@
         }
 
         body {
-            /* Aapka original cool gradient background */
-            background: linear-gradient(135deg, #000428, #004e92);
+            background-color: #020617; /* Deep modern dark */
             color: white;
             min-height: 100vh;
             display: flex;
@@ -32,69 +31,114 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 🌌 Animated Background Orbs for Premium Tech Feel */
+        .bg-orb-1, .bg-orb-2 {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            animation: floatOrb 10s infinite alternate ease-in-out;
+        }
+        .bg-orb-1 {
+            width: 300px; height: 300px;
+            background: rgba(0, 255, 204, 0.12);
+            top: 10%; left: 15%;
+        }
+        .bg-orb-2 {
+            width: 400px; height: 400px;
+            background: rgba(0, 102, 255, 0.12);
+            bottom: 10%; right: 10%;
+            animation-delay: -5s;
+        }
+
+        @keyframes floatOrb {
+            0% { transform: translateY(0px) scale(1); }
+            100% { transform: translateY(50px) scale(1.1); }
         }
 
         /* 🚀 3D Glassmorphism App Card */
         .app-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(0, 255, 204, 0.2);
-            border-radius: 24px;
-            padding: 40px 30px;
-            max-width: 450px;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 28px;
+            padding: 45px 35px;
+            max-width: 420px;
             width: 100%;
             text-align: center;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(0, 255, 204, 0.05);
-            animation: floatUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            animation: floatUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            opacity: 0;
+            transform: translateY(40px);
         }
 
         @keyframes floatUp {
-            from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         /* App Icon Styling */
         .app-icon-box {
-            width: 90px;
-            height: 90px;
+            width: 100px;
+            height: 100px;
             background: linear-gradient(135deg, #00ffcc, #0066ff);
-            border-radius: 22px;
+            border-radius: 24px;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 3rem;
-            color: #000428;
-            margin: 0 auto 20px;
-            box-shadow: 0 10px 25px rgba(0, 255, 204, 0.4);
-            border: 2px solid rgba(255, 255, 255, 0.8);
+            font-size: 3.5rem;
+            color: #ffffff;
+            margin: 0 auto 25px;
+            box-shadow: 0 15px 35px rgba(0, 255, 204, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+        }
+
+        /* Small notification dot on icon */
+        .app-icon-box::after {
+            content: '';
+            position: absolute;
+            top: -5px; right: -5px;
+            width: 20px; height: 20px;
+            background: #ff3366;
+            border: 3px solid #0f172a;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255, 51, 102, 0.5);
         }
 
         .app-title {
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 800;
             color: #ffffff;
-            margin-bottom: 5px;
-            text-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
         }
 
         .app-version {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: #00ffcc;
             background: rgba(0, 255, 204, 0.1);
-            padding: 4px 12px;
+            padding: 6px 16px;
             border-radius: 20px;
             font-weight: 600;
             letter-spacing: 1px;
-            display: inline-block;
-            margin-bottom: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(0, 255, 204, 0.2);
         }
 
         .app-desc {
-            font-size: 0.95rem;
-            color: #a0aec0;
+            font-size: 1rem;
+            color: #94a3b8;
             line-height: 1.6;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
+            font-weight: 300;
         }
 
         /* 🟢 Premium Download Button */
@@ -104,31 +148,48 @@
             justify-content: center;
             gap: 12px;
             width: 100%;
-            padding: 16px;
+            padding: 18px;
             border: none;
-            border-radius: 16px;
-            background: linear-gradient(45deg, #00ffcc, #0066ff);
-            color: #ffffff;
-            font-size: 1.1rem;
+            border-radius: 18px;
+            background: linear-gradient(135deg, #00ffcc, #0088ff);
+            color: #020617;
+            font-size: 1.15rem;
             font-weight: 800;
             text-transform: uppercase;
             text-decoration: none;
             cursor: pointer;
-            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 20px rgba(0, 102, 255, 0.3);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 25px rgba(0, 255, 204, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Button Shine Effect */
+        .btn-download::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: 0.6s ease;
+        }
+
+        .btn-download:hover::before {
+            left: 100%;
         }
 
         .btn-download:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 15px 30px rgba(0, 255, 204, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 136, 255, 0.5);
+            color: #ffffff;
         }
 
         .btn-download:active {
-            transform: scale(0.95);
+            transform: scale(0.96);
         }
 
         .btn-download i {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             animation: bounceDown 1.5s infinite;
         }
 
@@ -137,16 +198,45 @@
             50% { transform: translateY(4px); }
         }
 
+        /* Trust Badges Area */
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+            border-top: 1px dashed rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+        }
+        
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            color: #64748b;
+            font-weight: 600;
+        }
+        
+        .trust-badge i {
+            color: #10b981; /* Green shield */
+        }
+
         .footer-text {
-            margin-top: 30px;
+            margin-top: 40px;
             font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.5);
+            color: #64748b;
             text-align: center;
+            letter-spacing: 1px;
+            z-index: 1;
         }
 
     </style>
 </head>
 <body>
+
+    <!-- Animated Background Elements -->
+    <div class="bg-orb-1"></div>
+    <div class="bg-orb-2"></div>
 
     <div class="app-card">
         <!-- App Logo -->
@@ -156,20 +246,28 @@
         
         <!-- App Details -->
         <h1 class="app-title">BC Sir Hub</h1>
-        <div class="app-version">v2.0.1 • 6.9 MB</div>
+        <div class="app-version">
+            <i class="fa-solid fa-code-commit"></i> v2.0.1 &nbsp;|&nbsp; 6.9 MB
+        </div>
         
         <p class="app-desc">
-            Premium learning platform for students. Includes live classes, mock tests, and PDF study materials. Download the official Android app now.
+            Your premium learning companion. Get access to live classes, mock tests, and smart PDF materials directly on your device.
         </p>
 
-        <!-- 🚀 Download Button (Yahan aapka Github link laga hai) -->
-        <a href="https://github.com/techmaurya1/techmaurya1.github.io/releases/download/v2.0.1/bcsirhub.apk" class="btn-download">
-            <i class="fa-solid fa-cloud-arrow-down"></i> Download APK
+        <!-- 🚀 100% WORKING DOWNLOAD LINK -->
+        <a href="https://github.com/Rajucse11/rajucse11.github.io/releases/download/v2.0.1/BC_Sir_Hub_Android.apk" class="btn-download">
+            <i class="fa-solid fa-cloud-arrow-down"></i> Download App
         </a>
+
+        <!-- Trust Features (Makes it look very professional) -->
+        <div class="trust-badges">
+            <div class="trust-badge"><i class="fa-solid fa-shield-halved"></i> 100% Secure</div>
+            <div class="trust-badge"><i class="fa-solid fa-bolt"></i> Fast Setup</div>
+        </div>
     </div>
 
     <div class="footer-text">
-        &copy; 2026 Raju Dev | Secure Download
+        &copy; 2026 Raju Dev Architect | All Rights Reserved
     </div>
 
 </body>
